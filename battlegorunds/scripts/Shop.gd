@@ -4,6 +4,8 @@ func _process(delta: float) -> void:
 	pass
 
 func buy_laser() -> void:
-	if Inventory.coins == 10:
+	if Inventory.coins >= 10:
 		Inventory.unlocked.append("laser")
 		$Successful.visible = true
+	else:
+		$Failure.visible = true
