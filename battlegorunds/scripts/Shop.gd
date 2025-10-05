@@ -26,6 +26,6 @@ func buy_damage() -> void:
 		await get_tree().create_timer(2).timeout
 		$Damage/Successful.visible = false
 	else:
-		$Daser/Failure.visible = true
+		$Damage/Failure.visible = true
 		await get_tree().create_timer(2).timeout
 		$Damage/Failure.visible = false
