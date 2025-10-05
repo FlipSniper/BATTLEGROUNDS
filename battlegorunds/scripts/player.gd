@@ -29,7 +29,18 @@ func _process(delta: float) -> void:
 		if current_weapon == "gun":
 			gun_on = false
 			current_weapon = "laser"
+			animplayer.play_backwards("turn_laser_on")
 			animplayer.play("turn_laser_on")
+	if Input.is_action_just_pressed("toggle_gun") and !gun_on:
+		gun_on = true
+		if current_weapon == "laser":
+			animplayer.play_backwards("turn_laser_on")
+			laser_line.visible = false
+			laser_on = false
+			
+		gun_on = true
+		current_weapon = "gun"
+		animplayer.play("turn_gun_on")
 	if Input.is_action_just_pressed("shoot") and gun_on:
 		shoot_sound.play()
 		var bullet_instance = preload("res://scenes/bullet.tscn").instantiate()
