@@ -4,6 +4,7 @@ class_name Player
 signal died
 
 @onready var camera_remote_transform = $CameraRemoteTransfer
+@onready var shoot_raycast = $ShootRaycast
 
 var speed = 300.0
 
@@ -12,6 +13,9 @@ func _process(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("quit"):
 		get_tree().quit()
+	
+	if Input.is_action_just_pressed("shoot"):
+		pass
 
 func _physics_process(delta: float) -> void:
 	var move_dir = Vector2(Input.get_axis("move_left","move_right"),
@@ -27,7 +31,6 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_hit_box_body_entered(body: Node2D) -> void:
-	pass
-	#if body is Enemy:
-		#died.emit()
-		#queue_free()
+	if body is Enemy:
+		died.emit()
+		queue_free()

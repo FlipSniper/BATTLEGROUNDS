@@ -5,6 +5,7 @@ var player: Player = null
 
 var speed: float = 100.0
 var direction:= Vector2.ZERO
+var stop_distance := 20.0
 
 func _process(delta: float) -> void:
 	if player != null:
@@ -13,7 +14,7 @@ func _process(delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	if player != null:
 		var enemy_to_player = (player.global_position - global_position)
-		if enemy_to_player.length()> 125.0:
+		if enemy_to_player.length()> stop_distance:
 			direction = enemy_to_player.normalized()
 		else:
 			direction = Vector2.ZERO
