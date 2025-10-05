@@ -10,14 +10,22 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="Shop" type="CanvasLayer" parent="."]
+visible = false
 script = ExtResource("1_nt7q6")
 
-[node name="Laser" type="Button" parent="CanvasLayer"]
+[node name="Laser" type="Button" parent="Shop"]
 offset_left = 1.0
 offset_top = 130.0
 offset_right = 134.0
 offset_bottom = 181.0
 text = "Laser - 10 Coins"
 
-[connection signal="pressed" from="CanvasLayer/Laser" to="CanvasLayer" method="buy_laser"]
+[node name="Default" type="CanvasLayer" parent="."]
+
+[node name="Button" type="Button" parent="Default"]
+offset_right = 129.0
+offset_bottom = 51.0
+text = "Shop"
+
+[connection signal="pressed" from="Shop/Laser" to="Shop" method="buy_laser"]

@@ -3,6 +3,7 @@ class_name Enemy
 
 @onready var animplayer = $AnimationPlayer
 @onready var hurt_sound = $HurtSound
+var spawns
 
 var player: Player = null
 
@@ -54,11 +55,13 @@ func take_damage(amount : int):
 		hurt_sound.play()
 		animplayer.play("take_damage")
 		spawn_pos = global_position
-
+		
 		if hit_points <= 0:
+			var spawns = $"../spawns"
 			if drop:
 				var drop_instance = drop.instantiate()
 				drop_instance.global_position = spawn_pos
 				get_tree().current_scene.add_child(drop_instance)
+			spawns.spawn()
 			print(name + " died")
 			queue_free()

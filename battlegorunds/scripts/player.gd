@@ -23,7 +23,7 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("quit"):
 		get_tree().quit()
 	
-	if Input.is_action_just_pressed("toggle_laser") and !laser_on and !animplayer.is_playing():
+	if Input.is_action_just_pressed("toggle_laser") and !laser_on and !animplayer.is_playing() and "laser" in Inventory.unlocked:
 		laser_on = true
 		laser_line.visible = true
 		if current_weapon == "gun":
@@ -32,7 +32,7 @@ func _process(delta: float) -> void:
 			animplayer.play_backwards("turn_laser_on")
 			animplayer.play("turn_laser_on")
 			
-	if Input.is_action_just_pressed("toggle_gun") and !gun_on and !animplayer.is_playing():
+	if Input.is_action_just_pressed("toggle_gun") and !gun_on and !animplayer.is_playing() and "gun" in Inventory.unlocked:
 		gun_on = true
 		if current_weapon == "laser":
 			animplayer.play_backwards("turn_laser_on")
