@@ -41,4 +41,6 @@ position = Vector2(-8, 0)
 scale = Vector2(1.0848151, 1.0442463)
 shape = SubResource("CapsuleShape2D_dqkch")
 
+[node name="CameraRemoteTransfer" type="RemoteTransform2D" parent="."]
+
 [connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]
