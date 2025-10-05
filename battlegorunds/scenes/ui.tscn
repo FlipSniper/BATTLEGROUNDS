@@ -12,7 +12,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Shop" type="CanvasLayer" parent="."]
-visible = false
 script = ExtResource("1_nt7q6")
 
 [node name="Laser" type="Button" parent="Shop"]
@@ -22,34 +21,75 @@ offset_right = 134.0
 offset_bottom = 181.0
 text = "Laser - 10 Coins"
 
-[node name="Successful" type="Label" parent="Shop"]
+[node name="Successful" type="Label" parent="Shop/Laser"]
 visible = false
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -176.0
-offset_top = 279.0
-offset_right = 184.0
-offset_bottom = 302.0
+offset_left = 396.5
+offset_top = 457.5
+offset_right = 756.5
+offset_bottom = 532.5
 grow_horizontal = 2
 grow_vertical = 2
 text = "Purchase Successful. Bought Laser for 10 coins
 Press 1 to switch to Laser
 and Press 0 to switch back"
 
-[node name="Failure" type="Label" parent="Shop"]
+[node name="Failure" type="Label" parent="Shop/Laser"]
 visible = false
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -152.0
-offset_top = 279.0
-offset_right = 160.0
-offset_bottom = 302.0
+offset_left = 420.5
+offset_top = 483.5
+offset_right = 732.5
+offset_bottom = 506.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Purchase Failed. You don't have enough."
+
+[node name="Damage" type="Button" parent="Shop"]
+offset_top = 201.0
+offset_right = 178.0
+offset_bottom = 232.0
+text = "Increase Damage by 1
+- 5 coins"
+
+[node name="Successful" type="Label" parent="Shop/Damage"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 396.5
+offset_top = 457.5
+offset_right = 756.5
+offset_bottom = 532.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Purchase Successful. Bought Damage for 5 coins."
+
+[node name="Failure" type="Label" parent="Shop/Damage"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 420.5
+offset_top = 483.5
+offset_right = 732.5
+offset_bottom = 506.5
 grow_horizontal = 2
 grow_vertical = 2
 text = "Purchase Failed. You don't have enough."
