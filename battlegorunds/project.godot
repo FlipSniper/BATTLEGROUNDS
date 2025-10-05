@@ -15,6 +15,10 @@ run/main_scene="uid://dksd6e5p4bxp8"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Inventory="*res://scripts/Inventory.gd"
+
 [display]
 
 window/size/viewport_width=1280
@@ -75,6 +79,7 @@ toggle_gun={
 2d_physics/layer_4="enemy"
 2d_physics/layer_5="enemy_player_detector"
 2d_physics/layer_6="weapons"
+2d_physics/layer_7="collectibles"
 
 [rendering]
 

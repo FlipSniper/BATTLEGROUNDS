@@ -49,13 +49,16 @@ func _on_player_detector_body_exited(body: Node2D) -> void:
 			print(name +" lost the player")
 
 func take_damage(amount : int):
-	if amount> 0:
+	if amount > 0:
 		hit_points -= amount
 		hurt_sound.play()
 		animplayer.play("take_damage")
 		spawn_pos = global_position
+
 		if hit_points <= 0:
-			drop.instantiate()
-			drop.global_position = spawn_pos
+			if drop:
+				var drop_instance = drop.instantiate()
+				drop_instance.global_position = spawn_pos
+				get_tree().current_scene.add_child(drop_instance)
 			print(name + " died")
 			queue_free()
