@@ -23,3 +23,5 @@ texture = ExtResource("3_dqkch")
 position = Vector2(1, 0)
 scale = Vector2(2.6, 2.6)
 shape = SubResource("CapsuleShape2D_qhqgy")
+
+[node name="Camera2D" type="Camera2D" parent="."]
