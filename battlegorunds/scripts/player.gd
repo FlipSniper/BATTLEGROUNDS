@@ -47,8 +47,8 @@ func _process(delta: float) -> void:
 		current_weapon = "gun"
 		animplayer.play("turn_gun_on")
 
-	# 🧊 Shooting with cooldown
 	if Input.is_action_pressed("shoot") and gun_on and time_since_last_shot >= shoot_cooldown:
+		print(damage)
 		time_since_last_shot = 0.0
 		shoot_sound.play()
 		var bullet_instance = preload("res://scenes/bullet.tscn").instantiate()

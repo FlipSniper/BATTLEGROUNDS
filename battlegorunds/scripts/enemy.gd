@@ -12,7 +12,7 @@ var direction:= Vector2.ZERO
 var stop_distance := 20.0
 var spawn_pos
 
-var hit_points : int = 3
+var hit_points : int = 6
 
 @export var drop : PackedScene
 

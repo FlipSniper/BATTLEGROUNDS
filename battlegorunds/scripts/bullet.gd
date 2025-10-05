@@ -25,5 +25,5 @@ func _on_body_entered(body):
 	if body is Enemy:
 		if player != null:
 			body.player = player
-		body.take_damage(1)
+		body.take_damage(player.damage)
 	queue_free()

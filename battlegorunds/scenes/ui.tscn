@@ -103,4 +103,5 @@ offset_bottom = 51.0
 text = "Shop"
 
 [connection signal="pressed" from="Shop/Laser" to="Shop" method="buy_laser"]
+[connection signal="pressed" from="Shop/Damage" to="Shop" method="buy_damage"]
 [connection signal="pressed" from="Default/Button" to="Default" method="_on_button_pressed"]
