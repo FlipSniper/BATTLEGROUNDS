@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://bpc1yrplwdcwx"]
+[gd_scene load_steps=9 format=3 uid="uid://bpc1yrplwdcwx"]
 
 [ext_resource type="Texture2D" uid="uid://cpnuox5b7vvho" path="res://assets/enemy.png" id="1_7p1mj"]
 [ext_resource type="Script" uid="uid://cnhj1q6jwapxq" path="res://scripts/enemy.gd" id="1_md0e3"]
+[ext_resource type="AudioStream" uid="uid://cxoqxsyr78x21" path="res://sfx/breeze-of-blood-122253.mp3" id="3_4ra3w"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_md0e3"]
 radius = 31.0
@@ -72,6 +73,9 @@ shape = SubResource("CircleShape2D_7p1mj")
 libraries = {
 &"": SubResource("AnimationLibrary_4ra3w")
 }
+
+[node name="HurtSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_4ra3w")
 
 [connection signal="body_entered" from="PlayerDetector" to="." method="_on_player_detector_body_entered"]
 [connection signal="body_exited" from="PlayerDetector" to="." method="_on_player_detector_body_exited"]

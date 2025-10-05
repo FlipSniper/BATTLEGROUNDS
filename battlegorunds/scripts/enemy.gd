@@ -1,6 +1,8 @@
 extends CharacterBody2D
 class_name Enemy
 
+@onready var animplayer = $AnimationPlayer
+
 var player: Player = null
 
 var speed: float = 100.0
@@ -46,6 +48,7 @@ func take_damage(amount : int):
 	if amount> 0:
 		hit_points -= amount
 		#play enemy hurt sound
+		animplayer.play("take_damage")
 		if hit_points <= 0:
 			print(name + " died")
 			queue_free()
