@@ -22,10 +22,10 @@ func buy_damage() -> void:
 	if Inventory.coins >= 5:
 		player.damage += 1
 		Inventory.coins -= 5
-		$Laser/Successful.visible = true
+		$Damage/Successful.visible = true
 		await get_tree().create_timer(2).timeout
-		$Laser/Successful.visible = false
+		$Damage/Successful.visible = false
 	else:
-		$Laser/Failure.visible = true
+		$Daser/Failure.visible = true
 		await get_tree().create_timer(2).timeout
-		$Laser/Failure.visible = false
+		$Damage/Failure.visible = false
