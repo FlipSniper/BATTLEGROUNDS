@@ -8,7 +8,6 @@ signal died
 @onready var shoot_sound = $ShootSound
 @onready var laser_line = $LaserLine2D
 @onready var animplayer = $AnimationPlayer
-@onready var bullet = $Bullet
 
 var speed = 300.0
 var laser_on := false
@@ -17,7 +16,6 @@ var current_weapon = "gun"
 
 func _ready():
 	laser_line.visible = false
-	bullet.visible = false
 
 func _process(delta: float) -> void:
 	look_at(get_global_mouse_position())
@@ -28,16 +26,17 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("toggle_laser") and !laser_on:
 		laser_on = true
 		laser_line.visible = true
-		animplayer.play("turn_laser_on")
 		if current_weapon == "gun":
 			gun_on = false
 			current_weapon = "laser"
-	if Input.is_action_just_pressed("toggle_gun") and !gun_on:
-		gun_on = true
-		if current_weapon == "laser":
-			animplayer.play_backwards("turn_laser_on")
-			laser_on = false
-			current_weapon = "gun"
+			animplayer.play("turn_laser_on")
+	if Input.is_action_just_pressed("shoot") and gun_on:
+		shoot_sound.play()
+		var bullet_instance = preload("res://scenes/bullet.tscn").instantiate()
+		get_tree().current_scene.add_child(bullet_instance)
+		bullet_instance.global_position = shoot_raycast.global_position
+		bullet_instance.direction = (get_global_mouse_position() - global_position).normalized()
+
 	
 	if shoot_raycast.is_colliding():
 		var cp = shoot_raycast.get_collision_point()
@@ -55,6 +54,7 @@ func _process(delta: float) -> void:
 			elif collider is Enemy:
 				collider.player = self
 				collider.take_damage(1)
+		
 				
 
 func _physics_process(delta: float) -> void:
@@ -74,6 +74,3 @@ func _on_hit_box_body_entered(body: Node2D) -> void:
 	if body is Enemy:
 		died.emit()
 		queue_free()
-
-func take_damage():
-	pass
