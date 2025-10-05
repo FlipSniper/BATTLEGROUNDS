@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+signal died
+
 var speed = 300.0
 
 func _process(delta: float) -> void:
@@ -22,4 +24,6 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_hit_box_body_entered(body: Node2D) -> void:
-	print("touched the player")
+	if body is Enemy:
+		died.emit()
+		queue_free()

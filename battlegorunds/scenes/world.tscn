@@ -1,5 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://dksd6e5p4bxp8"]
+[gd_scene load_steps=6 format=3 uid="uid://dksd6e5p4bxp8"]
 
+[ext_resource type="Script" uid="uid://13yc2y7r4n50" path="res://scripts/world.gd" id="1_k0juu"]
 [ext_resource type="PackedScene" uid="uid://dmhqkqfr6b2qi" path="res://scenes/box.tscn" id="1_nnsk1"]
 [ext_resource type="PackedScene" uid="uid://c4a87t3d0sguw" path="res://scenes/player.tscn" id="2_rwgxs"]
 [ext_resource type="PackedScene" uid="uid://bpc1yrplwdcwx" path="res://scenes/enemy.tscn" id="3_4wyf3"]
@@ -7,6 +8,7 @@
 [sub_resource type="QuadMesh" id="QuadMesh_e5uuo"]
 
 [node name="World" type="Node2D"]
+script = ExtResource("1_k0juu")
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="."]
 modulate = Color(0, 0.4862745, 0.21568628, 1)

@@ -6,6 +6,7 @@
 size = Vector2(506, 505)
 
 [node name="Box" type="StaticBody2D"]
+collision_mask = 10
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1

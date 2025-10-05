@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://bpc1yrplwdcwx"]
+[gd_scene load_steps=5 format=3 uid="uid://bpc1yrplwdcwx"]
 
 [ext_resource type="Texture2D" uid="uid://cpnuox5b7vvho" path="res://assets/enemy.png" id="1_7p1mj"]
+[ext_resource type="Script" uid="uid://cnhj1q6jwapxq" path="res://scripts/enemy.gd" id="1_md0e3"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_md0e3"]
 radius = 31.0
@@ -10,6 +11,9 @@ height = 100.0
 radius = 200.0
 
 [node name="Enemy" type="CharacterBody2D"]
+collision_layer = 8
+collision_mask = 9
+script = ExtResource("1_md0e3")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_7p1mj")
@@ -19,6 +23,8 @@ position = Vector2(-10, 0)
 shape = SubResource("CapsuleShape2D_md0e3")
 
 [node name="PlayerDetector" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
 shape = SubResource("CircleShape2D_7p1mj")
