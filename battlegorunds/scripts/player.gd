@@ -27,6 +27,7 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_hit_box_body_entered(body: Node2D) -> void:
-	if body is Enemy:
-		died.emit()
-		queue_free()
+	pass
+	#if body is Enemy:
+		#died.emit()
+		#queue_free()
