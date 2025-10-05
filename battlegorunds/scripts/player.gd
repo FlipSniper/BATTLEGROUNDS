@@ -8,6 +8,7 @@ signal died
 @onready var shoot_sound = $ShootSound
 @onready var laser_line = $LaserLine2D
 @onready var animplayer = $AnimationPlayer
+var damage = 1
 
 var speed = 300.0
 var laser_on := false
@@ -72,7 +73,7 @@ func _process(delta: float) -> void:
 				print("shot a box")
 			elif collider is Enemy:
 				collider.player = self
-				collider.take_damage(1)
+				collider.take_damage(damage)
 
 func _physics_process(delta: float) -> void:
 	var move_dir = Vector2(Input.get_axis("move_left", "move_right"),

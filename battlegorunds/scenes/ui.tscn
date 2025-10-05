@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://v6j31f7jrdhc"]
+[gd_scene load_steps=3 format=3 uid="uid://v6j31f7jrdhc"]
 
 [ext_resource type="Script" uid="uid://6o365pk4s83e" path="res://scripts/Shop.gd" id="1_nt7q6"]
+[ext_resource type="Script" uid="uid://dwi54o2lmqra5" path="res://scripts/default.gd" id="2_x4jx1"]
 
 [node name="UI" type="Control"]
 layout_mode = 3
@@ -22,16 +23,39 @@ offset_bottom = 181.0
 text = "Laser - 10 Coins"
 
 [node name="Successful" type="Label" parent="Shop"]
-offset_right = 40.0
-offset_bottom = 23.0
-text = "Purchase Successful. Bought Laser for 10 coins"
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -176.0
+offset_top = 279.0
+offset_right = 184.0
+offset_bottom = 302.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Purchase Successful. Bought Laser for 10 coins
+Press 1 to switch to Laser
+and Press 0 to switch back"
 
 [node name="Failure" type="Label" parent="Shop"]
-offset_right = 40.0
-offset_bottom = 23.0
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -152.0
+offset_top = 279.0
+offset_right = 160.0
+offset_bottom = 302.0
+grow_horizontal = 2
+grow_vertical = 2
 text = "Purchase Failed. You don't have enough."
 
 [node name="Default" type="CanvasLayer" parent="."]
+script = ExtResource("2_x4jx1")
 
 [node name="Button" type="Button" parent="Default"]
 offset_right = 129.0
@@ -39,3 +63,4 @@ offset_bottom = 51.0
 text = "Shop"
 
 [connection signal="pressed" from="Shop/Laser" to="Shop" method="buy_laser"]
+[connection signal="pressed" from="Default/Button" to="Default" method="_on_button_pressed"]
