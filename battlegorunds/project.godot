@@ -57,6 +57,14 @@ quit={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="environment"
+2d_physics/layer_2="player"
+2d_physics/layer_3="player_hit_box"
+2d_physics/layer_4="enemy"
+2d_physics/layer_5="enemy_player_detector"
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
