@@ -5,6 +5,7 @@ signal died
 
 @onready var camera_remote_transform = $CameraRemoteTransfer
 @onready var shoot_raycast = $ShootRaycast
+@onready var shoot_sound = $ShootSound
 
 var speed = 300.0
 
@@ -17,7 +18,7 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("shoot"):
 		if shoot_raycast.is_colliding():
 			var collider = shoot_raycast.get_collider()
-			
+			shoot_sound.play()
 			if collider is StaticBody2D:
 				print("shot a box")
 			elif collider is Enemy:

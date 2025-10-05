@@ -2,6 +2,7 @@ extends CharacterBody2D
 class_name Enemy
 
 @onready var animplayer = $AnimationPlayer
+@onready var hurt_sound = $HurtSound
 
 var player: Player = null
 
@@ -47,7 +48,7 @@ func _on_player_detector_body_exited(body: Node2D) -> void:
 func take_damage(amount : int):
 	if amount> 0:
 		hit_points -= amount
-		#play enemy hurt sound
+		hurt_sound.play()
 		animplayer.play("take_damage")
 		if hit_points <= 0:
 			print(name + " died")
