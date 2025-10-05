@@ -46,3 +46,6 @@ func take_damage(amount : int):
 	if amount> 0:
 		hit_points -= amount
 		#play enemy hurt sound
+		if hit_points <= 0:
+			print(name + " died")
+			queue_free()

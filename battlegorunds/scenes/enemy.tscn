@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bpc1yrplwdcwx"]
+[gd_scene load_steps=7 format=3 uid="uid://bpc1yrplwdcwx"]
 
 [ext_resource type="Texture2D" uid="uid://cpnuox5b7vvho" path="res://assets/enemy.png" id="1_7p1mj"]
 [ext_resource type="Script" uid="uid://cnhj1q6jwapxq" path="res://scripts/enemy.gd" id="1_md0e3"]
@@ -9,6 +9,15 @@ height = 100.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7p1mj"]
 radius = 250.0
+
+[sub_resource type="Animation" id="Animation_md0e3"]
+resource_name = "take_damage"
+length = 0.3
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4ra3w"]
+_data = {
+&"take_damage": SubResource("Animation_md0e3")
+}
 
 [node name="Enemy" type="CharacterBody2D"]
 collision_layer = 8
@@ -28,6 +37,11 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
 shape = SubResource("CircleShape2D_7p1mj")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_4ra3w")
+}
 
 [connection signal="body_entered" from="PlayerDetector" to="." method="_on_player_detector_body_entered"]
 [connection signal="body_exited" from="PlayerDetector" to="." method="_on_player_detector_body_exited"]
