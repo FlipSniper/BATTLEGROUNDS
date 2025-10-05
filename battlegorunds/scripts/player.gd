@@ -7,12 +7,17 @@ signal died
 @onready var shoot_raycast = $ShootRaycast
 @onready var shoot_sound = $ShootSound
 @onready var laser_line = $LaserLine2D
+@onready var animplayer = $AnimationPlayer
+@onready var bullet = $Bullet
 
 var speed = 300.0
 var laser_on := false
+var gun_on := true
+var current_weapon = "gun"
 
 func _ready():
 	laser_line.visible = false
+	bullet.visible = false
 
 func _process(delta: float) -> void:
 	look_at(get_global_mouse_position())
@@ -20,9 +25,19 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("quit"):
 		get_tree().quit()
 	
-	if Input.is_action_just_pressed("toggle_laser"):
+	if Input.is_action_just_pressed("toggle_laser") and !laser_on:
 		laser_on = true
 		laser_line.visible = true
+		animplayer.play("turn_laser_on")
+		if current_weapon == "gun":
+			gun_on = false
+			current_weapon = "laser"
+	if Input.is_action_just_pressed("toggle_gun") and !gun_on:
+		gun_on = true
+		if current_weapon == "laser":
+			animplayer.play_backwards("turn_laser_on")
+			laser_on = false
+			current_weapon = "gun"
 	
 	if shoot_raycast.is_colliding():
 		var cp = shoot_raycast.get_collision_point()
@@ -31,7 +46,7 @@ func _process(delta: float) -> void:
 	else:
 		laser_line.points[1] = Vector2(1000,0)
 	
-	if Input.is_action_just_pressed("shoot"):
+	if Input.is_action_just_pressed("shoot") and laser_on:
 		if shoot_raycast.is_colliding():
 			var collider = shoot_raycast.get_collider()
 			shoot_sound.play()

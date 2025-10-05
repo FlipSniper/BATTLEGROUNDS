@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://c4a87t3d0sguw"]
+[gd_scene load_steps=12 format=3 uid="uid://c4a87t3d0sguw"]
 
 [ext_resource type="Script" uid="uid://ba7irgwnwr4vk" path="res://scripts/player.gd" id="1_3vyb7"]
 [ext_resource type="Texture2D" uid="uid://bv37widdkpm1f" path="res://assets/player.png" id="2_qhqgy"]
@@ -13,6 +13,49 @@ height = 36.92308
 radius = 25.0
 height = 84.0
 
+[sub_resource type="Animation" id="Animation_dqkch"]
+resource_name = "turn_laser_on"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LaserLine2D:width")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.06, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 6.0, 2.0]
+}
+
+[sub_resource type="Animation" id="Animation_qlg0r"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LaserLine2D:width")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [2.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tuyoq"]
+_data = {
+&"RESET": SubResource("Animation_qlg0r"),
+&"turn_laser_on": SubResource("Animation_dqkch")
+}
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_dqkch"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qlg0r"]
+radius = 0.51948047
+height = 1.9999996
+
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 17
@@ -20,6 +63,7 @@ script = ExtResource("1_3vyb7")
 
 [node name="LaserLine2D" type="Line2D" parent="."]
 points = PackedVector2Array(60, 1, 1000, 0)
+width = 2.0
 default_color = Color(1, 0, 0, 0.7764706)
 
 [node name="Body" type="Sprite2D" parent="."]
@@ -56,5 +100,25 @@ collide_with_areas = true
 
 [node name="ShootSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_dqkch")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_tuyoq")
+}
+
+[node name="Bullet" type="MeshInstance2D" parent="."]
+modulate = Color(0.8004118, 0.559106, 0.2097817, 1)
+position = Vector2(108, 1.0000001)
+scale = Vector2(38.5, 7.0000005)
+mesh = SubResource("CapsuleMesh_dqkch")
+
+[node name="Area2D" type="Area2D" parent="Bullet"]
+scale = Vector2(0.9999998, 0.99999976)
+collision_layer = 32
+collision_mask = 9
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bullet/Area2D"]
+scale = Vector2(1.0000002, 1.0000004)
+shape = SubResource("CapsuleShape2D_qlg0r")
 
 [connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]
