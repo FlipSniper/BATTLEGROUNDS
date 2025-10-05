@@ -23,7 +23,7 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("quit"):
 		get_tree().quit()
 	
-	if Input.is_action_just_pressed("toggle_laser") and !laser_on:
+	if Input.is_action_just_pressed("toggle_laser") and !laser_on and !animplayer.is_playing():
 		laser_on = true
 		laser_line.visible = true
 		if current_weapon == "gun":
@@ -31,24 +31,26 @@ func _process(delta: float) -> void:
 			current_weapon = "laser"
 			animplayer.play_backwards("turn_laser_on")
 			animplayer.play("turn_laser_on")
-	if Input.is_action_just_pressed("toggle_gun") and !gun_on:
+			
+	if Input.is_action_just_pressed("toggle_gun") and !gun_on and !animplayer.is_playing():
 		gun_on = true
 		if current_weapon == "laser":
 			animplayer.play_backwards("turn_laser_on")
 			laser_line.visible = false
 			laser_on = false
-			
 		gun_on = true
 		current_weapon = "gun"
 		animplayer.play("turn_gun_on")
+		
 	if Input.is_action_just_pressed("shoot") and gun_on:
 		shoot_sound.play()
 		var bullet_instance = preload("res://scenes/bullet.tscn").instantiate()
 		get_tree().current_scene.add_child(bullet_instance)
 		bullet_instance.global_position = shoot_raycast.global_position
 		bullet_instance.direction = (get_global_mouse_position() - global_position).normalized()
+		bullet_instance.player = self
 
-	
+
 	if shoot_raycast.is_colliding():
 		var cp = shoot_raycast.get_collision_point()
 		var local_cp = to_local(cp)
@@ -65,8 +67,6 @@ func _process(delta: float) -> void:
 			elif collider is Enemy:
 				collider.player = self
 				collider.take_damage(1)
-		
-				
 
 func _physics_process(delta: float) -> void:
 	var move_dir = Vector2(Input.get_axis("move_left","move_right"),
@@ -79,7 +79,6 @@ func _physics_process(delta: float) -> void:
 		velocity.y = move_toward(velocity.y, 0 ,speed)
 	
 	move_and_slide()
-
 
 func _on_hit_box_body_entered(body: Node2D) -> void:
 	if body is Enemy:
