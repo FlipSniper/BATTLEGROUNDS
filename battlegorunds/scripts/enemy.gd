@@ -7,6 +7,8 @@ var speed: float = 100.0
 var direction:= Vector2.ZERO
 var stop_distance := 20.0
 
+var hit_points : int = 3
+
 func _process(delta: float) -> void:
 	if player != null:
 		look_at(player.global_position)
@@ -39,3 +41,8 @@ func _on_player_detector_body_exited(body: Node2D) -> void:
 		if player != null:
 			player = null
 			print(name +" lost the player")
+
+func take_damage(amount : int):
+	if amount> 0:
+		hit_points -= amount
+		#play enemy hurt sound

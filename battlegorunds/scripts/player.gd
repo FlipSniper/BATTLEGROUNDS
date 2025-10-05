@@ -15,7 +15,14 @@ func _process(delta: float) -> void:
 		get_tree().quit()
 	
 	if Input.is_action_just_pressed("shoot"):
-		pass
+		if shoot_raycast.is_colliding():
+			var collider = shoot_raycast.get_collider()
+			
+			if collider is StaticBody2D:
+				print("shot a box")
+			elif collider is Enemy:
+				collider.take_damage(1)
+				
 
 func _physics_process(delta: float) -> void:
 	var move_dir = Vector2(Input.get_axis("move_left","move_right"),
@@ -34,3 +41,6 @@ func _on_hit_box_body_entered(body: Node2D) -> void:
 	if body is Enemy:
 		died.emit()
 		queue_free()
+
+func take_damage():
+	pass
