@@ -1,11 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://dksd6e5p4bxp8"]
+[gd_scene load_steps=8 format=3 uid="uid://dksd6e5p4bxp8"]
 
 [ext_resource type="Script" uid="uid://13yc2y7r4n50" path="res://scripts/world.gd" id="1_k0juu"]
 [ext_resource type="PackedScene" uid="uid://dmhqkqfr6b2qi" path="res://scenes/box.tscn" id="1_nnsk1"]
 [ext_resource type="PackedScene" uid="uid://c4a87t3d0sguw" path="res://scenes/player.tscn" id="2_rwgxs"]
 [ext_resource type="PackedScene" uid="uid://bpc1yrplwdcwx" path="res://scenes/enemy.tscn" id="3_4wyf3"]
+[ext_resource type="Texture2D" uid="uid://dgb6eynnnow7" path="res://assets/boundary.png" id="5_71j4m"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_e5uuo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k0juu"]
+size = Vector2(5260, 103)
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_k0juu")
@@ -59,3 +63,29 @@ position = Vector2(1372, 360)
 position = Vector2(388, -302)
 
 [node name="MainCamera" type="Camera2D" parent="."]
+
+[node name="Boundary" type="StaticBody2D" parent="."]
+collision_mask = 10
+
+[node name="Sprite2D" type="Sprite2D" parent="Boundary"]
+position = Vector2(519.99963, 654.50006)
+scale = Vector2(66.265625, 49.070316)
+texture = ExtResource("5_71j4m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boundary"]
+position = Vector2(562, 2299)
+shape = SubResource("RectangleShape2D_k0juu")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Boundary"]
+position = Vector2(586, -1566)
+shape = SubResource("RectangleShape2D_k0juu")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Boundary"]
+position = Vector2(-2043, 562)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_k0juu")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Boundary"]
+position = Vector2(3162, 629)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_k0juu")
