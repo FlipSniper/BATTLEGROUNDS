@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://v6j31f7jrdhc"]
+
+[ext_resource type="Script" uid="uid://6o365pk4s83e" path="res://scripts/Shop.gd" id="1_nt7q6"]
+
+[node name="UI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+script = ExtResource("1_nt7q6")
+
+[node name="Laser" type="Button" parent="CanvasLayer"]
+offset_left = 1.0
+offset_top = 130.0
+offset_right = 134.0
+offset_bottom = 181.0
+text = "Laser - 10 Coins"
+
+[connection signal="pressed" from="CanvasLayer/Laser" to="CanvasLayer" method="buy_laser"]

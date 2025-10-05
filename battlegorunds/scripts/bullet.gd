@@ -2,7 +2,7 @@ extends Area2D
 
 var speed = 800
 var direction = Vector2.ZERO
-var player = null  # 👈 reference to the player who fired
+var player = null
 var rotated = false
 
 func _physics_process(delta):
@@ -19,6 +19,6 @@ func _physics_process(delta):
 func _on_body_entered(body):
 	if body is Enemy:
 		if player != null:
-			body.player = player  # 👈 tell the enemy who shot it
+			body.player = player
 		body.take_damage(1)
 	queue_free()

@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://cmeoqmaisrbk8"]
+
+[ext_resource type="Texture2D" uid="uid://c4nja7ttf1b57" path="res://assets/coin.png" id="1_rwqht"]
+
+[node name="Area2D" type="Area2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_rwqht")

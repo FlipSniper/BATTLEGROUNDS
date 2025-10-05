@@ -9,8 +9,11 @@ var player: Player = null
 var speed: float = 100.0
 var direction:= Vector2.ZERO
 var stop_distance := 20.0
+var spawn_pos
 
 var hit_points : int = 3
+
+@export var drop : PackedScene
 
 func _process(delta: float) -> void:
 	if player != null:
@@ -50,6 +53,9 @@ func take_damage(amount : int):
 		hit_points -= amount
 		hurt_sound.play()
 		animplayer.play("take_damage")
+		spawn_pos = global_position
 		if hit_points <= 0:
+			drop.instantiate()
+			drop.global_position = spawn_pos
 			print(name + " died")
 			queue_free()
