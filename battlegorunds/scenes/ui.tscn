@@ -21,6 +21,16 @@ offset_right = 134.0
 offset_bottom = 181.0
 text = "Laser - 10 Coins"
 
+[node name="Successful" type="Label" parent="Shop"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Purchase Successful. Bought Laser for 10 coins"
+
+[node name="Failure" type="Label" parent="Shop"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Purchase Failed. You don't have enough."
+
 [node name="Default" type="CanvasLayer" parent="."]
 
 [node name="Button" type="Button" parent="Default"]

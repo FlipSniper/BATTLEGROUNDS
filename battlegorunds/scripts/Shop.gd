@@ -5,4 +5,5 @@ func _process(delta: float) -> void:
 
 func buy_laser() -> void:
 	if Inventory.coins == 10:
-		pass
+		Inventory.unlocked.append("laser")
+		$Successful.visible = true
