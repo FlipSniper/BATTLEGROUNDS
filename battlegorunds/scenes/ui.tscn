@@ -111,6 +111,37 @@ offset_bottom = 23.0
 text = "Coins"
 text_direction = 2
 
+[node name="Potion Counter" type="Label" parent="Default"]
+offset_left = 1151.0
+offset_top = 63.0
+offset_right = 1278.0
+offset_bottom = 86.0
+text = "Current Potions:"
+
+[node name="Potion1" type="Label" parent="Default/Potion Counter"]
+layout_mode = 0
+offset_top = 32.0
+offset_right = 40.0
+offset_bottom = 55.0
+text = "a"
+text_direction = 2
+
+[node name="Potion2" type="Label" parent="Default/Potion Counter"]
+layout_mode = 0
+offset_top = 63.0
+offset_right = 40.0
+offset_bottom = 86.0
+text = "a"
+text_direction = 2
+
+[node name="Potion3" type="Label" parent="Default/Potion Counter"]
+layout_mode = 0
+offset_top = 91.0
+offset_right = 40.0
+offset_bottom = 114.0
+text = "a"
+text_direction = 2
+
 [connection signal="pressed" from="Shop/Laser" to="Shop" method="buy_laser"]
-[connection signal="pressed" from="Shop/Damage" to="Shop" method="buy_damage"]
+[connection signal="pressed" from="Shop/Damage" to="Shop" method="buy_damage_I"]
 [connection signal="pressed" from="Default/Button" to="Default" method="_on_button_pressed"]

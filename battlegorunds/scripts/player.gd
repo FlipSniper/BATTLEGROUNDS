@@ -74,6 +74,11 @@ func _process(delta: float) -> void:
 			elif collider is Enemy:
 				collider.player = self
 				collider.take_damage(damage)
+	if Inventory.potions.size() != 0:
+		for i in range(0,Inventory.potions.size()-1):
+			var potion = i
+			for j in range(0,Inventory.potions.size()-1):
+				pass
 
 func _physics_process(delta: float) -> void:
 	var move_dir = Vector2(Input.get_axis("move_left", "move_right"),
