@@ -24,6 +24,9 @@ func buy_damage() -> void:
 		$Damage/Successful.visible = true
 		await get_tree().create_timer(2).timeout
 		$Damage/Successful.visible = false
+		await get_tree().create_timer(60).timeout
+		print("affects = byebye")
+		player.damage = 1
 	else:
 		$Damage/Failure.visible = true
 		await get_tree().create_timer(2).timeout

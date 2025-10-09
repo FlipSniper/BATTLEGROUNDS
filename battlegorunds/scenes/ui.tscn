@@ -21,7 +21,7 @@ offset_left = 1.0
 offset_top = 130.0
 offset_right = 134.0
 offset_bottom = 181.0
-text = "Laser - 10 Coins"
+text = "Magic Laser - 10 Coins"
 
 [node name="Successful" type="Label" parent="Shop/Laser"]
 visible = false
@@ -61,7 +61,7 @@ text = "Purchase Failed. You don't have enough."
 offset_top = 201.0
 offset_right = 178.0
 offset_bottom = 232.0
-text = "Increase Damage by 1
+text = "Damage Potion I
 - 5 coins"
 
 [node name="Successful" type="Label" parent="Shop/Damage"]
