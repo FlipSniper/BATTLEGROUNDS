@@ -13,7 +13,6 @@ func _on_button_pressed() -> void:
 
 func potion(name: String) -> void:
 	if potions_equipped.size() >= MAX_POTIONS:
-		push_warning("No empty potion slots available!")
 		return
 
 	potions_equipped.append(name)
@@ -34,4 +33,3 @@ func potion_disable(name: String) -> void:
 			child.queue_free()
 			potions_equipped.erase(name)
 			return
-	push_warning("Potion not found: " + name)

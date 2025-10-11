@@ -23,7 +23,7 @@ func _ready():
 
 func _process(delta: float) -> void:
 	look_at(get_global_mouse_position())
-	time_since_last_shot += delta  # track time
+	time_since_last_shot += delta
 
 	if Input.is_action_just_pressed("quit"):
 		get_tree().quit()
@@ -75,7 +75,6 @@ func _process(delta: float) -> void:
 				collider.player = self
 				collider.take_damage(damage)
 	if Inventory.potions.size() != 0:
-		print("trying")
 		for i in range(0,Inventory.potions.size()):
 			print(Inventory.potions)
 			var potion = Inventory.potions[i]
@@ -86,7 +85,13 @@ func _process(delta: float) -> void:
 						$UI/Default.potion("Damage_I")
 						Inventory.potions.remove_at(i)
 						print(Inventory.potions)
-						start_timer(60,1)
+						start_timer("Damage_I",60,1)
+					if potion == "Speed_I":
+						speed += 50
+						$UI/Default.potion("Speed_I")
+						Inventory.potions.remove_at(i)
+						print(Inventory.potions)
+						start_timer("Speed_I",60,50)
 func _physics_process(delta: float) -> void:
 	var move_dir = Vector2(Input.get_axis("move_left", "move_right"),
 	Input.get_axis("move_up", "move_down"))
@@ -99,10 +104,14 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
-func start_timer(time,damage_sub):
+func start_timer(name, time, attribute_sub):
 	await get_tree().create_timer(time).timeout
-	damage-=damage_sub
-	$UI/Default.potion_disable("Damage_I")
+	if name == "Damage_I":
+		damage-=attribute_sub
+		$UI/Default.potion_disable("Damage_I")
+	if name == "Speed_I":
+		damage-=attribute_sub
+		$UI/Default.potion_disable("Speed_I")
 
 func _on_hit_box_body_entered(body: Node2D) -> void:
 	if body is Enemy:

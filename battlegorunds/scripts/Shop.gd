@@ -18,8 +18,7 @@ func buy_laser() -> void:
 
 func buy_damage_I() -> void:
 	var player = get_tree().current_scene.get_node_or_null("Player")
-	print(Default.potions_equipped.size())
-	if Inventory.coins >= 5 and Default.potions_equipped.size() <= 7:
+	if Inventory.coins >= 5 and Default.potions_equipped.size() < 8:
 		Inventory.coins -= 5
 		$Damage/Successful.visible = true
 		Inventory.potions.append("Damage_I")
@@ -29,7 +28,25 @@ func buy_damage_I() -> void:
 		$Damage/Failure_Coins.visible = true
 		await get_tree().create_timer(2).timeout
 		$Damage/Failure_Coins.visible = false
-	elif !Default.potions_equipped.size() <= 7:
+	elif !Default.potions_equipped.size() < 8:
 		$Damage/Failure_Potions.visible = true
 		await get_tree().create_timer(2).timeout
 		$Damage/Failure_Potions.visible = false
+
+
+func buy_speed_I() -> void:
+	var player = get_tree().current_scene.get_node_or_null("Player")
+	if Inventory.coins >= 8 and Default.potions_equipped.size() < 8:
+		Inventory.coins -= 8
+		$Speed/Successful.visible = true
+		Inventory.potions.append("Speed_I")
+		await get_tree().create_timer(2).timeout
+		$Speed/Successful.visible = false
+	elif !Inventory.coins >= 8:
+		$Speed/Failure_Coins.visible = true
+		await get_tree().create_timer(2).timeout
+		$Speed/Failure_Coins.visible = false
+	elif !Default.potions_equipped.size() < 8:
+		$Speed/Failure_Potions.visible = true
+		await get_tree().create_timer(2).timeout
+		$Speed/Failure_Potions.visible = false

@@ -12,9 +12,13 @@ var direction:= Vector2.ZERO
 var stop_distance := 20.0
 var spawn_pos
 
-var hit_points : int = 6
+var hit_points : int
+var rng = RandomNumberGenerator
 
 @export var drop : PackedScene
+
+func _ready() -> void::
+	
 
 func _process(delta: float) -> void:
 	if player != null:
@@ -40,7 +44,6 @@ func _on_player_detector_body_entered(body: Node2D) -> void:
 	if body is Player:
 		if player == null:
 			player = body
-			print(name +" found the player")
 
 
 func _on_player_detector_body_exited(body: Node2D) -> void:
