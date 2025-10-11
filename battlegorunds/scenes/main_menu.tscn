@@ -1,4 +1,93 @@
-[gd_scene load_steps=7 format=3 uid="uid://cy2ie7mgbrows"]
+[gd_scene load_steps=12 format=3 uid="uid://cy2ie7mgbrows"]
+
+[ext_resource type="Script" uid="uid://6lotiep68uis" path="res://scripts/main_menu.gd" id="1_ekxnf"]
+[ext_resource type="Texture2D" uid="uid://dvk4sr34ysdxj" path="res://assets/e949c9d5-2532-4590-aa99-5fcb6f57bdfb.png" id="1_l6cm7"]
+
+[sub_resource type="Animation" id="Animation_vue75"]
+resource_name = "title"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Background/Label:theme_override_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.74365354, 0, 0.21651804, 1), Color(0, 0, 0, 0.6)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Background/Label:theme_override_colors/font_shadow_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.54509807, 0, 0.015686275, 0.48235294)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Background/ColorRect:color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(1, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_l6cm7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Background/Label:theme_override_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.74365354, 0, 0.21651804, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Background/Label:theme_override_colors/font_shadow_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Background/ColorRect:color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ekxnf"]
+_data = {
+&"RESET": SubResource("Animation_l6cm7"),
+&"title": SubResource("Animation_vue75")
+}
 
 [sub_resource type="Animation" id="Animation_ekxnf"]
 resource_name = "buttons"
@@ -134,66 +223,40 @@ _data = {
 &"buttons": SubResource("Animation_ekxnf")
 }
 
-[sub_resource type="Animation" id="Animation_vue75"]
-resource_name = "title"
-length = 2.0
-loop_mode = 1
+[sub_resource type="Animation" id="Animation_wu84c"]
+resource_name = "fade"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Background/Label:theme_override_colors/font_color")
-tracks/0/interp = 1
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(0.74365354, 0, 0.21651804, 1), Color(1, 1, 1, 0.6)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Background/Label:theme_override_colors/font_shadow_color")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(0.54509807, 0, 0.015686275, 0.48235294)]
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_l6cm7"]
+[sub_resource type="Animation" id="Animation_8ln24"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Background/Label:theme_override_colors/font_color")
+tracks/0/path = NodePath("ColorRect:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(0.74365354, 0, 0.21651804, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Background/Label:theme_override_colors/font_shadow_color")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
+"values": [Color(1, 1, 1, 0)]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_ekxnf"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rtw2f"]
 _data = {
-&"RESET": SubResource("Animation_l6cm7"),
-&"title": SubResource("Animation_vue75")
+&"RESET": SubResource("Animation_8ln24"),
+&"fade": SubResource("Animation_wu84c")
 }
 
 [node name="Main_Menu" type="Control"]
@@ -203,38 +266,24 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="Buttons" type="CanvasLayer" parent="."]
-
-[node name="play" type="Button" parent="Buttons"]
-offset_left = 553.0
-offset_top = 316.0
-offset_right = 662.0008
-offset_bottom = 393.0009
-theme_override_font_sizes/font_size = 50
-text = "Play"
-
-[node name="controls" type="Button" parent="Buttons"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -135.0
-offset_top = 49.0
-offset_right = 77.0
-offset_bottom = 126.00058
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 50
-text = "Controls"
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Buttons"]
-libraries = {
-&"": SubResource("AnimationLibrary_wu84c")
-}
+script = ExtResource("1_ekxnf")
 
 [node name="Background" type="CanvasLayer" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="Background"]
+custom_minimum_size = Vector2(1280, 720)
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_l6cm7")
+expand_mode = 3
+
+[node name="ColorRect" type="ColorRect" parent="Background"]
+custom_minimum_size = Vector2(700, 80)
+offset_left = 284.0
+offset_top = 151.0
+offset_right = 984.0
+offset_bottom = 231.0
+color = Color(0, 0, 0, 1)
 
 [node name="Label" type="Label" parent="Background"]
 offset_left = 293.0
@@ -251,3 +300,53 @@ root_node = NodePath("../..")
 libraries = {
 &"": SubResource("AnimationLibrary_ekxnf")
 }
+
+[node name="Buttons" type="CanvasLayer" parent="."]
+
+[node name="play" type="Button" parent="Buttons"]
+offset_left = 553.0
+offset_top = 316.0
+offset_right = 662.00433
+offset_bottom = 393.0018
+theme_override_font_sizes/font_size = 50
+text = "Play"
+
+[node name="controls" type="Button" parent="Buttons"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -135.0
+offset_top = 49.0
+offset_right = 77.0
+offset_bottom = 126.00278
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 50
+text = "Controls"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Buttons"]
+libraries = {
+&"": SubResource("AnimationLibrary_wu84c")
+}
+
+[node name="Fade" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="Fade"]
+visible = false
+custom_minimum_size = Vector2(1280, 720)
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(1, 1, 1, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Fade"]
+libraries = {
+&"": SubResource("AnimationLibrary_rtw2f")
+}
+
+[connection signal="mouse_entered" from="Buttons/play" to="." method="mouse_buttons"]
+[connection signal="mouse_exited" from="Buttons/play" to="." method="mouse_buttons_exited"]
+[connection signal="pressed" from="Buttons/play" to="." method="play"]
+[connection signal="mouse_entered" from="Buttons/controls" to="." method="mouse_buttons"]
+[connection signal="mouse_exited" from="Buttons/controls" to="." method="mouse_buttons_exited"]
