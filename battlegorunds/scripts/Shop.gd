@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-
+@export var Default: CanvasLayer
 
 func buy_laser() -> void:
 	if Inventory.coins >= 10 and !("laser" in Inventory.unlocked):
@@ -18,13 +18,18 @@ func buy_laser() -> void:
 
 func buy_damage_I() -> void:
 	var player = get_tree().current_scene.get_node_or_null("Player")
-	if Inventory.coins >= 5:
+	print(Default.potions_equipped.size())
+	if Inventory.coins >= 5 and Default.potions_equipped.size() <= 7:
 		Inventory.coins -= 5
 		$Damage/Successful.visible = true
 		Inventory.potions.append("Damage_I")
 		await get_tree().create_timer(2).timeout
 		$Damage/Successful.visible = false
-	else:
-		$Damage/Failure.visible = true
+	elif !Inventory.coins >= 5:
+		$Damage/Failure_Coins.visible = true
 		await get_tree().create_timer(2).timeout
-		$Damage/Failure.visible = false
+		$Damage/Failure_Coins.visible = false
+	elif !Default.potions_equipped.size() <= 7:
+		$Damage/Failure_Potions.visible = true
+		await get_tree().create_timer(2).timeout
+		$Damage/Failure_Potions.visible = false

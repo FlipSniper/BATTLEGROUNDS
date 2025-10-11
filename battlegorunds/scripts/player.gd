@@ -83,6 +83,7 @@ func _process(delta: float) -> void:
 				if potion == Inventory.potions[j]:
 					if potion == "Damage_I":
 						damage+=1
+						$UI/Default.potion("Damage_I")
 						Inventory.potions.remove_at(i)
 						print(Inventory.potions)
 						start_timer(60,1)
@@ -101,6 +102,7 @@ func _physics_process(delta: float) -> void:
 func start_timer(time,damage_sub):
 	await get_tree().create_timer(time).timeout
 	damage-=damage_sub
+	$UI/Default.potion_disable("Damage_I")
 
 func _on_hit_box_body_entered(body: Node2D) -> void:
 	if body is Enemy:
