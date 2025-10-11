@@ -6,6 +6,8 @@ var player = null
 var rotated = false
 var distance_travelled = 0.0
 var max_distance = 500.0  # how far bullet can travel (in pixels)
+var poison : int
+var ticks : int
 
 func _physics_process(delta):
 	if !rotated and direction != Vector2.ZERO:
@@ -25,5 +27,5 @@ func _on_body_entered(body):
 	if body is Enemy:
 		if player != null:
 			body.player = player
-		body.take_damage(player.damage)
+		body.take_damage(player.damage,poison,ticks)
 	queue_free()

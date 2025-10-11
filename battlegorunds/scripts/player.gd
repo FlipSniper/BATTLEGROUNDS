@@ -14,7 +14,8 @@ var speed = 300.0
 var laser_on := false
 var gun_on := true
 var current_weapon = "gun"
-
+var poison  =  0
+var ticks = 0
 var shoot_cooldown := 0.5
 var time_since_last_shot := 0.0
 
@@ -56,6 +57,8 @@ func _process(delta: float) -> void:
 		bullet_instance.global_position = shoot_raycast.global_position
 		bullet_instance.direction = (get_global_mouse_position() - global_position).normalized()
 		bullet_instance.player = self
+		bullet_instance.poison = poison
+		bullet_instance.ticks = ticks
 
 	if shoot_raycast.is_colliding():
 		var cp = shoot_raycast.get_collision_point()
@@ -73,7 +76,7 @@ func _process(delta: float) -> void:
 				print("shot a box")
 			elif collider is Enemy:
 				collider.player = self
-				collider.take_damage(damage)
+				collider.take_damage(damage,poison,ticks)
 	if Inventory.potions.size() != 0:
 		for i in range(0,Inventory.potions.size()):
 			print(Inventory.potions)
@@ -92,6 +95,13 @@ func _process(delta: float) -> void:
 						Inventory.potions.remove_at(i)
 						print(Inventory.potions)
 						start_timer("Speed_I",60,50)
+					if potion == "Poison_I":
+						poison += 1
+						ticks += 1
+						$UI/Default.potion("Poison_I")
+						Inventory.potions.remove_at(i)
+						print(Inventory.potions)
+						start_timer("Poison_I",30,1)
 func _physics_process(delta: float) -> void:
 	var move_dir = Vector2(Input.get_axis("move_left", "move_right"),
 	Input.get_axis("move_up", "move_down"))
@@ -110,8 +120,12 @@ func start_timer(name, time, attribute_sub):
 		damage-=attribute_sub
 		$UI/Default.potion_disable("Damage_I")
 	if name == "Speed_I":
-		damage-=attribute_sub
+		speed-=attribute_sub
 		$UI/Default.potion_disable("Speed_I")
+	if name == "Poison_I":
+		poison-=attribute_sub
+		ticks -= attribute_sub
+		$UI/Default.potion_disable("Poison_I")
 
 func _on_hit_box_body_entered(body: Node2D) -> void:
 	if body is Enemy:

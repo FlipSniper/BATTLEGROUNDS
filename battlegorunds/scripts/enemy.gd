@@ -13,7 +13,7 @@ var stop_distance := 20.0
 var spawn_pos
 
 var hit_points : int
-var rng : RandomNumberGenerator
+@onready var rng = RandomNumberGenerator.new()
 
 @export var drop : PackedScene
 
@@ -56,7 +56,7 @@ func _on_player_detector_body_exited(body: Node2D) -> void:
 			player = null
 			print(name +" lost the player")
 
-func take_damage(amount : int):
+func take_damage(amount : int,poison, ticks_left):
 	if amount > 0:
 		hit_points -= amount
 		hurt_sound.play()
@@ -72,3 +72,6 @@ func take_damage(amount : int):
 			spawns.spawn()
 			print(name + " died")
 			queue_free()
+		if poison > 0 and ticks_left > 0:
+			await get_tree().create_timer(1).timeout
+			take_damage(poison,poison,ticks_left-1)

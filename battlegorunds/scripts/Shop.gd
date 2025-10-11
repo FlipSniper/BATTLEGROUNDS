@@ -50,3 +50,21 @@ func buy_speed_I() -> void:
 		$Speed/Failure_Potions.visible = true
 		await get_tree().create_timer(2).timeout
 		$Speed/Failure_Potions.visible = false
+
+
+func buy_Poison_I() -> void:
+	var player = get_tree().current_scene.get_node_or_null("Player")
+	if Inventory.coins >= 10 and Default.potions_equipped.size() < 8:
+		Inventory.coins -= 10
+		$Poison/Successful.visible = true
+		Inventory.potions.append("Poison_I")
+		await get_tree().create_timer(2).timeout
+		$Poison/Successful.visible = false
+	elif !Inventory.coins >= 10:
+		$Poison/Failure_Coins.visible = true
+		await get_tree().create_timer(2).timeout
+		$Poison/Failure_Coins.visible = false
+	elif !Default.potions_equipped.size() < 8:
+		$Poison/Failure_Potions.visible = true
+		await get_tree().create_timer(2).timeout
+		$Poison/Failure_Potions.visible = false

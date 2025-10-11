@@ -118,7 +118,7 @@ offset_top = 268.0
 offset_right = 178.0
 offset_bottom = 322.0
 text = "Speed Potion I
-- 5 coins"
+- 8 coins"
 
 [node name="Successful" type="Label" parent="Shop/Speed"]
 visible = false
@@ -153,6 +153,61 @@ grow_vertical = 2
 text = "Purchase Failed. You don't have enough."
 
 [node name="Failure_Potions" type="Label" parent="Shop/Speed"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 420.5
+offset_top = 464.0
+offset_right = 732.5
+offset_bottom = 487.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Purchase Failed. You've drunk to many potions, wait until the effects wear off."
+
+[node name="Poison" type="Button" parent="Shop"]
+offset_top = 338.0
+offset_right = 178.0
+offset_bottom = 392.0
+text = "Inflict Posion Potion I
+- 10 coins"
+
+[node name="Successful" type="Label" parent="Shop/Poison"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 396.5
+offset_top = 457.5
+offset_right = 756.5
+offset_bottom = 532.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Purchase Successful. Bought Poison for 8 coins."
+
+[node name="Failure_Coins" type="Label" parent="Shop/Poison"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 420.5
+offset_top = 464.0
+offset_right = 732.5
+offset_bottom = 487.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Purchase Failed. You don't have enough."
+
+[node name="Failure_Potions" type="Label" parent="Shop/Poison"]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -235,4 +290,5 @@ text = "Current Potions:"
 [connection signal="pressed" from="Shop/Laser" to="Shop" method="buy_laser"]
 [connection signal="pressed" from="Shop/Damage" to="Shop" method="buy_damage_I"]
 [connection signal="pressed" from="Shop/Speed" to="Shop" method="buy_speed_I"]
+[connection signal="pressed" from="Shop/Poison" to="Shop" method="buy_Poison_I"]
 [connection signal="pressed" from="Default/Button" to="Default" method="_on_button_pressed"]
