@@ -13,12 +13,16 @@ var stop_distance := 20.0
 var spawn_pos
 
 var hit_points : int
-var rng = RandomNumberGenerator
+var rng : RandomNumberGenerator
 
 @export var drop : PackedScene
 
-func _ready() -> void::
-	
+func _ready() -> void:
+	var num = rng.randi_range(0,100)
+	if num > 94:
+		hit_points = 10
+	else:
+		hit_points = 6
 
 func _process(delta: float) -> void:
 	if player != null:
