@@ -75,11 +75,17 @@ func _process(delta: float) -> void:
 				collider.player = self
 				collider.take_damage(damage)
 	if Inventory.potions.size() != 0:
-		for i in range(0,Inventory.potions.size()-1):
-			var potion = i
-			for j in range(0,Inventory.potions.size()-1):
-				pass
-
+		print("trying")
+		for i in range(0,Inventory.potions.size()):
+			print(Inventory.potions)
+			var potion = Inventory.potions[i]
+			for j in range(0,Inventory.potions.size()):
+				if potion == Inventory.potions[j]:
+					if potion == "Damage_I":
+						damage+=1
+						Inventory.potions.remove_at(i)
+						print(Inventory.potions)
+						start_timer(60,1)
 func _physics_process(delta: float) -> void:
 	var move_dir = Vector2(Input.get_axis("move_left", "move_right"),
 	Input.get_axis("move_up", "move_down"))
@@ -91,6 +97,10 @@ func _physics_process(delta: float) -> void:
 		velocity.y = move_toward(velocity.y, 0, speed)
 
 	move_and_slide()
+
+func start_timer(time,damage_sub):
+	await get_tree().create_timer(time).timeout
+	damage-=damage_sub
 
 func _on_hit_box_body_entered(body: Node2D) -> void:
 	if body is Enemy:

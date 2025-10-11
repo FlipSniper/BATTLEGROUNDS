@@ -24,8 +24,6 @@ func buy_damage_I() -> void:
 		Inventory.potions.append("Damage_I")
 		await get_tree().create_timer(2).timeout
 		$Damage/Successful.visible = false
-		await get_tree().create_timer(60).timeout
-		Inventory.potions.erase("Damage_I")
 	else:
 		$Damage/Failure.visible = true
 		await get_tree().create_timer(2).timeout
