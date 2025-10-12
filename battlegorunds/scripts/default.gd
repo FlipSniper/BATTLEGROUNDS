@@ -4,7 +4,6 @@ extends CanvasLayer
 @onready var shop = $"../Shop"
 
 var potions_equipped: Array = []
-const MAX_POTIONS = 8
 
 
 func _on_button_pressed() -> void:
@@ -12,7 +11,8 @@ func _on_button_pressed() -> void:
 
 
 func potion(name: String) -> void:
-	if potions_equipped.size() >= MAX_POTIONS:
+	print(Inventory.potions_max)
+	if potions_equipped.size() >= Inventory.potions_max:
 		return
 
 	potions_equipped.append(name)

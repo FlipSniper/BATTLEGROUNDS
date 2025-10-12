@@ -105,6 +105,18 @@ func _process(delta: float) -> void:
 						Inventory.potions.remove_at(i)
 						print(Inventory.potions)
 						start_timer("Poison_I",30,1)
+					if potion == "Health_I":
+						Inventory.health += 5
+						$UI/Default.potion("Health_I")
+						Inventory.potions.remove_at(i)
+						print(Inventory.potions)
+						start_timer("Health_I",30,1)
+					if potion == "Potion_I":
+						Inventory.potions_max+=12
+						$UI/Default.potion("Potion_I")
+						Inventory.potions.remove_at(i)
+						print(Inventory.potions)
+						start_timer("Health_I",120,12)
 func _physics_process(delta: float) -> void:
 	var move_dir = Vector2(Input.get_axis("move_left", "move_right"),
 	Input.get_axis("move_up", "move_down"))
@@ -123,12 +135,17 @@ func start_timer(name, time, attribute_sub):
 		damage-=attribute_sub
 		$UI/Default.potion_disable("Damage_I")
 	if name == "Speed_I":
-		speed-=attribute_sub
+		speed-=	attribute_sub
 		$UI/Default.potion_disable("Speed_I")
 	if name == "Poison_I":
 		poison-=attribute_sub
 		ticks -= attribute_sub
 		$UI/Default.potion_disable("Poison_I")
+	if name == "Health_I":
+		$UI/Default.potion_disable("Health_I")
+	if name == "Potion_I":
+		Inventory.potions_max -= attribute_sub
+		$UI/Default.potion_disable("Potion_I")
 
 func _on_hit_box_body_entered(body: Node2D,check = false) -> void:
 	if body is Enemy or check:
