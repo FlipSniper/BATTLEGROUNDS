@@ -381,6 +381,112 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Purchase Failed. You've drunk to many potions, wait until the effects wear off."
 
+[node name="Discount" type="Button" parent="Shop/Shop/Products"]
+layout_mode = 2
+text = "Temporary 50% discount
+for all potions in shop
+- 25 coins"
+
+[node name="Successful" type="Label" parent="Shop/Shop/Products/Discount"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 212.0
+offset_top = 152.5
+offset_right = 941.0
+offset_bottom = 227.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Purchase Successful. Bought Potion Tolerance for 15 coins. You can drink up to 20 potions now"
+
+[node name="Failure_Coins" type="Label" parent="Shop/Shop/Products/Discount"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 420.5
+offset_top = 159.0
+offset_right = 732.5
+offset_bottom = 182.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Purchase Failed. You don't have enough."
+
+[node name="Failure_Potions" type="Label" parent="Shop/Shop/Products/Discount"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 275.5
+offset_top = 159.0
+offset_right = 877.5
+offset_bottom = 182.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Purchase Failed. You've drunk to many potions, wait until the effects wear off."
+
+[node name="Multiplier" type="Button" parent="Shop/Shop/Products"]
+layout_mode = 2
+text = "On enemies death clone
+them with a secret spell
+In a result,double coins
+- 25 coins"
+
+[node name="Successful" type="Label" parent="Shop/Shop/Products/Multiplier"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 212.0
+offset_top = 59.0
+offset_right = 941.0
+offset_bottom = 134.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Purchase Successful. Bought Potion Tolerance for 15 coins. You can drink up to 20 potions now"
+
+[node name="Failure_Coins" type="Label" parent="Shop/Shop/Products/Multiplier"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 420.5
+offset_top = 65.5
+offset_right = 732.5
+offset_bottom = 88.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Purchase Failed. You don't have enough."
+
+[node name="Failure_Potions" type="Label" parent="Shop/Shop/Products/Multiplier"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 275.5
+offset_top = 65.5
+offset_right = 877.5
+offset_bottom = 88.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Purchase Failed. You've drunk to many potions, wait until the effects wear off."
+
 [node name="Default" type="CanvasLayer" parent="."]
 script = ExtResource("2_x4jx1")
 
@@ -520,4 +626,6 @@ libraries = {
 [connection signal="pressed" from="Shop/Shop/Products/Poison" to="Shop" method="buy_Poison_I"]
 [connection signal="pressed" from="Shop/Shop/Products/Health" to="Shop" method="buy_Health_I"]
 [connection signal="pressed" from="Shop/Shop/Products/Potion" to="Shop" method="buy_Potion_I"]
+[connection signal="pressed" from="Shop/Shop/Products/Discount" to="Shop" method="buy_Discount_I"]
+[connection signal="pressed" from="Shop/Shop/Products/Multiplier" to="Shop" method="buy_Multiplier_I"]
 [connection signal="pressed" from="Default/Button" to="Default" method="_on_button_pressed"]

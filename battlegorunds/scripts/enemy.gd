@@ -76,9 +76,14 @@ func take_damage(amount: int, poison, ticks_left):
 			
 			if type == "Disperse" and bullet_scene:
 				_spawn_bullets()
-			var drop_instance = drop.instantiate()
-			drop_instance.global_position = spawn_pos
-			get_tree().current_scene.add_child(drop_instance)
+			
+			for i in range(rng.randi_range(0,7*Inventory.coin_multi)):
+				var drop_instance = drop.instantiate()
+				drop_instance.global_position = spawn_pos
+				drop_instance.global_position.x += rng.randi_range(50,-50)
+				drop_instance.global_position.y += rng.randi_range(50,-50)
+				get_tree().current_scene.add_child(drop_instance)
+			
 
 			spawns.spawn()
 			print(name + " died")

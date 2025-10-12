@@ -12,10 +12,12 @@ collision_mask = 2
 script = ExtResource("1_i64fm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(0.27407575, 0.27407575)
 shape = SubResource("CircleShape2D_rwqht")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(4, 4)
+position = Vector2(1, 1)
+scale = Vector2(0.27407575, 0.27407575)
 texture = ExtResource("1_rwqht")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

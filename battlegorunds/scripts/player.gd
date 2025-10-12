@@ -117,6 +117,18 @@ func _process(delta: float) -> void:
 						Inventory.potions.remove_at(i)
 						print(Inventory.potions)
 						start_timer("Health_I",120,12)
+					if potion == "Discount_I":
+						Inventory.discount+=.5
+						$UI/Default.potion("Discount_I")
+						Inventory.potions.remove_at(i)
+						print(Inventory.potions)
+						start_timer("Discount_I",240,.50)
+					if potion == "Multiplier_I":
+						Inventory.coin_multi+=1
+						$UI/Default.potion("Clone_I")
+						Inventory.potions.remove_at(i)
+						print(Inventory.potions)
+						start_timer("Multiplier",210,1)
 func _physics_process(delta: float) -> void:
 	var move_dir = Vector2(Input.get_axis("move_left", "move_right"),
 	Input.get_axis("move_up", "move_down"))
@@ -146,6 +158,12 @@ func start_timer(name, time, attribute_sub):
 	if name == "Potion_I":
 		Inventory.potions_max -= attribute_sub
 		$UI/Default.potion_disable("Potion_I")
+	if name == "Discount_I":
+		Inventory.discount -= attribute_sub
+		$UI/Default.potion_disable("Discount_I")
+	if name == "Multiplier_I":
+		Inventory.coin_multi -= attribute_sub
+		$UI/Default.potion_disable("Clone_I")
 
 func _on_hit_box_body_entered(body: Node2D,check = false) -> void:
 	if body is Enemy or check:
