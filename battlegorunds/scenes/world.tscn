@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://b6yelpe24a13n"]
+[gd_scene load_steps=11 format=3 uid="uid://b6yelpe24a13n"]
 
 [ext_resource type="Script" uid="uid://13yc2y7r4n50" path="res://scripts/world.gd" id="1_k0juu"]
 [ext_resource type="PackedScene" uid="uid://dmhqkqfr6b2qi" path="res://scenes/box.tscn" id="1_nnsk1"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dgb6eynnnow7" path="res://assets/boundary.png" id="5_71j4m"]
 [ext_resource type="PackedScene" uid="uid://esd8rjt4hvgf" path="res://scenes/enemy2.tscn" id="6_i7141"]
 [ext_resource type="Script" uid="uid://uhgsyt4xbef" path="res://scripts/spawns.gd" id="6_qfnet"]
+[ext_resource type="PackedScene" uid="uid://bpw80yw1c0jjg" path="res://scenes/enemy3.tscn" id="7_4mrxx"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_e5uuo"]
 
@@ -410,12 +411,16 @@ position = Vector2(485, -181)
 [node name="Enemy8" parent="Enemies" instance=ExtResource("6_i7141")]
 position = Vector2(1045, 594)
 
+[node name="Enemy9" parent="Enemies" instance=ExtResource("7_4mrxx")]
+position = Vector2(200, 593)
+
 [node name="MainCamera" type="Camera2D" parent="."]
 
 [node name="spawns" type="Node2D" parent="."]
 script = ExtResource("6_qfnet")
 normal_enemy = ExtResource("3_4wyf3")
 dispersed_enemy = ExtResource("6_i7141")
+ranged_enemy = ExtResource("7_4mrxx")
 
 [node name="spawn1" type="Node2D" parent="spawns"]
 position = Vector2(-1774, -1305)

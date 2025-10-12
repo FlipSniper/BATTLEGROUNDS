@@ -43,6 +43,7 @@ func _process(delta: float) -> void:
 			animplayer.play_backwards("turn_fire_on")
 			$fire.visible = false
 			fire_on = false
+		$Body/Gun.visible = false
 		animplayer.play("turn_laser_on")
 		current_weapon = "laser"
 
@@ -56,6 +57,8 @@ func _process(delta: float) -> void:
 			animplayer.play_backwards("turn_fire_on")
 			$fire.visible = false
 			fire_on = false
+		
+		$Body/Gun.visible = true
 		current_weapon = "gun"
 		animplayer.play("turn_gun_on")
 	if Input.is_action_just_pressed("fire") and !fire_on and !animplayer.is_playing() and "fire" in Inventory.unlocked:
@@ -66,10 +69,13 @@ func _process(delta: float) -> void:
 		if current_weapon == "gun":
 			gun_on = false
 			animplayer.play_backwards("turn_laser_on")
-		$fire.visible = true
 		fire_on = true
 		current_weapon = "fire"
-		animplayer.play("turn_gun_on")
+		$fire.scale.x = 0.1
+		$fire.scale.y = 0.1
+		animplayer.play("turn_fire_on")
+		$fire.visible = true
+		$Body/Gun.visible = false
 
 	if Input.is_action_pressed("shoot") and gun_on and time_since_last_shot >= shoot_cooldown:
 		print(damage)
@@ -83,11 +89,11 @@ func _process(delta: float) -> void:
 		bullet_instance.owner_type = "player"
 		bullet_instance.poison = poison
 		bullet_instance.ticks = ticks
-	if Input.is_action_pressed("shoot") and fire_on and time_since_last_shot >= shoot_cooldown:
+	if Input.is_action_pressed("shoot") and fire_on and time_since_last_shot >= 3:
 		print(damage)
 		time_since_last_shot = 0.0
-		fire_sound.play()
 		animplayer.play("fire_attack")
+		fire_sound.play()
 
 	if shoot_raycast.is_colliding():
 		var cp = shoot_raycast.get_collision_point()

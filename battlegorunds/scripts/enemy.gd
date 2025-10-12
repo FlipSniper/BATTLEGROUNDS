@@ -10,15 +10,16 @@ var player: Player = null
 
 var speed: float = 100.0
 var direction := Vector2.ZERO
-var stop_distance := 20.0
 var spawn_pos
-
 var hit_points : int
-@onready var rng = RandomNumberGenerator.new()
 
+@onready var rng = RandomNumberGenerator.new()
 @export var drop : PackedScene
 @export var bullet_scene : PackedScene
-var wait_shoot=true
+var wait_shoot = true
+
+var too_close = false
+var too_far = false
 
 func _ready() -> void:
 	rng.randomize()
@@ -29,32 +30,44 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if player != null:
 		look_at(player.global_position)
+
 		if type == "Disperse" and wait_shoot:
 			wait_shoot = false
-			print("trying")
 			_spawn_bullets()
 			await get_tree().create_timer(1.2).timeout
 			wait_shoot = true
+
 		if type == "Ranged" and wait_shoot:
 			wait_shoot = false
 			shoot()
+			await get_tree().create_timer(1.2).timeout
+			wait_shoot = true
 
 
 func _physics_process(delta: float) -> void:
-	if player != null:
-		var enemy_to_player = player.global_position - global_position
-		if enemy_to_player.length() > stop_distance:
+	if player == null:
+		return
+
+	var enemy_to_player = player.global_position - global_position
+
+	direction = Vector2.ZERO
+
+	if type == "Ranged":
+		if too_close:
+			direction = -enemy_to_player.normalized()
+		elif too_far:
 			direction = enemy_to_player.normalized()
 		else:
 			direction = Vector2.ZERO
+	else:
+		direction = enemy_to_player.normalized()
 
-		if direction != Vector2.ZERO:
-			velocity = speed * direction.normalized()
-		else:
-			velocity.x = move_toward(velocity.x, 0, speed)
-			velocity.y = move_toward(velocity.y, 0, speed)
+	if direction != Vector2.ZERO:
+		velocity = speed * direction
+	else:
+		velocity = Vector2.ZERO
 
-		move_and_slide()
+	move_and_slide()
 
 
 func _on_player_detector_body_entered(body: Node2D) -> void:
@@ -76,7 +89,6 @@ func take_damage(amount: int, poison, ticks_left):
 		spawn_pos = global_position
 
 		if hit_points <= 0:
-			
 			if type == "Disperse" and bullet_scene:
 				_spawn_bullets()
 			
@@ -87,7 +99,6 @@ func take_damage(amount: int, poison, ticks_left):
 				drop_instance.global_position.y += rng.randi_range(50,-50)
 				get_tree().current_scene.add_child(drop_instance)
 			
-
 			spawns.spawn()
 			print(name + " died")
 			queue_free()
@@ -96,10 +107,11 @@ func take_damage(amount: int, poison, ticks_left):
 			await get_tree().create_timer(1).timeout
 			take_damage(poison, poison, ticks_left - 1)
 
+
 func shoot():
 	var bullet = bullet_scene.instantiate()
-	var angle = deg_to_rad(90)
-	bullet.direction = Vector2.RIGHT.rotated(angle)
+	var dir = (player.global_position - global_position).normalized()
+	bullet.direction = dir
 	bullet.global_position = global_position
 	bullet.owner_type = "enemy"
 	bullet.shooter = self
@@ -118,8 +130,18 @@ func _spawn_bullets():
 
 
 func stay_away(body: Node2D) -> void:
-	look_at(player.global_position)
-
+	if body is Player:
+		too_close = true
+		too_far = false
 
 func away_you_go(body: Node2D) -> void:
-	pass # Replace with function body.
+	if body is Player:
+		too_close = false
+
+func come_closer(body: Node2D) -> void:
+	if body is Player:
+		too_far = true
+
+func close_enough(body: Node2D) -> void:
+	if body is Player:
+		too_far = false

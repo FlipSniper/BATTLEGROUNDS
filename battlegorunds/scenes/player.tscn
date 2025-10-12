@@ -1,10 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://c4a87t3d0sguw"]
+[gd_scene load_steps=17 format=3 uid="uid://c4a87t3d0sguw"]
 
 [ext_resource type="Script" uid="uid://ba7irgwnwr4vk" path="res://scripts/player.gd" id="1_3vyb7"]
 [ext_resource type="Texture2D" uid="uid://bv37widdkpm1f" path="res://assets/player.png" id="2_qhqgy"]
 [ext_resource type="Texture2D" uid="uid://cx11k4l66snmh" path="res://assets/Gun.png" id="3_dqkch"]
 [ext_resource type="AudioStream" uid="uid://c05k810nvg3lo" path="res://sfx/gunshot-352466.mp3" id="4_dqkch"]
 [ext_resource type="PackedScene" uid="uid://v6j31f7jrdhc" path="res://scenes/ui.tscn" id="5_qlg0r"]
+[ext_resource type="AudioStream" uid="uid://bouqwo3w4hd1j" path="res://sfx/short-fire-whoosh_1-31728... (1)-[AudioTrimmer.com].mp3" id="5_smehm"]
 [ext_resource type="AudioStream" uid="uid://85xc4ewo16fs" path="res://sfx/pathetic-screaming-sound-....mp3" id="6_tuyoq"]
 [ext_resource type="PackedScene" uid="uid://b25fryw355f1r" path="res://scenes/fire.tscn" id="7_fjrip"]
 
@@ -197,7 +198,7 @@ collide_with_areas = true
 stream = ExtResource("4_dqkch")
 
 [node name="FireSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("4_dqkch")
+stream = ExtResource("5_smehm")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

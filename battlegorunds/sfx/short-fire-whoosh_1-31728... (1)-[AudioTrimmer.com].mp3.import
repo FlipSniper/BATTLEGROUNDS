@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bouqwo3w4hd1j"
+path="res://.godot/imported/short-fire-whoosh_1-31728... (1)-[AudioTrimmer.com].mp3-09838fb6a80060b8f1ebde63d5c66847.mp3str"
+
+[deps]
+
+source_file="res://sfx/short-fire-whoosh_1-31728... (1)-[AudioTrimmer.com].mp3"
+dest_files=["res://.godot/imported/short-fire-whoosh_1-31728... (1)-[AudioTrimmer.com].mp3-09838fb6a80060b8f1ebde63d5c66847.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
