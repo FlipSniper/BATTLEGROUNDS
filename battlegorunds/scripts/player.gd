@@ -6,6 +6,7 @@ signal died
 @onready var camera_remote_transform = $CameraRemoteTransfer
 @onready var shoot_raycast = $ShootRaycast
 @onready var shoot_sound = $ShootSound
+@onready var fire_sound = $FireSound
 @onready var laser_line = $LaserLine2D
 @onready var animplayer = $AnimationPlayer
 @onready var hurt_sound = $HurtSound
@@ -17,6 +18,7 @@ var gun_on := true
 var current_weapon = "gun"
 var poison  =  0
 var ticks = 0
+var fire_on := false
 var shoot_cooldown := 0.5
 var time_since_last_shot := 0.0
 
@@ -36,9 +38,13 @@ func _process(delta: float) -> void:
 		laser_line.visible = true
 		if current_weapon == "gun":
 			gun_on = false
-			current_weapon = "laser"
 			animplayer.play_backwards("turn_laser_on")
-			animplayer.play("turn_laser_on")
+		if current_weapon == "fire":
+			animplayer.play_backwards("turn_fire_on")
+			$fire.visible = false
+			fire_on = false
+		animplayer.play("turn_laser_on")
+		current_weapon = "laser"
 
 	if Input.is_action_just_pressed("toggle_gun") and !gun_on and !animplayer.is_playing() and "gun" in Inventory.unlocked:
 		gun_on = true
@@ -46,8 +52,23 @@ func _process(delta: float) -> void:
 			animplayer.play_backwards("turn_laser_on")
 			laser_line.visible = false
 			laser_on = false
-		gun_on = true
+		if current_weapon == "fire":
+			animplayer.play_backwards("turn_fire_on")
+			$fire.visible = false
+			fire_on = false
 		current_weapon = "gun"
+		animplayer.play("turn_gun_on")
+	if Input.is_action_just_pressed("fire") and !fire_on and !animplayer.is_playing() and "fire" in Inventory.unlocked:
+		if current_weapon == "laser":
+			animplayer.play_backwards("turn_laser_on")
+			laser_line.visible = false
+			laser_on = false
+		if current_weapon == "gun":
+			gun_on = false
+			animplayer.play_backwards("turn_laser_on")
+		$fire.visible = true
+		fire_on = true
+		current_weapon = "fire"
 		animplayer.play("turn_gun_on")
 
 	if Input.is_action_pressed("shoot") and gun_on and time_since_last_shot >= shoot_cooldown:
@@ -62,6 +83,11 @@ func _process(delta: float) -> void:
 		bullet_instance.owner_type = "player"
 		bullet_instance.poison = poison
 		bullet_instance.ticks = ticks
+	if Input.is_action_pressed("shoot") and fire_on and time_since_last_shot >= shoot_cooldown:
+		print(damage)
+		time_since_last_shot = 0.0
+		fire_sound.play()
+		animplayer.play("fire_attack")
 
 	if shoot_raycast.is_colliding():
 		var cp = shoot_raycast.get_collision_point()
@@ -176,3 +202,10 @@ func _on_hit_box_body_entered(body: Node2D,check = false) -> void:
 		if Inventory.health <= 0:
 			died.emit()
 			queue_free()
+
+
+func fire_hit(body: Node2D) -> void:
+	print(body is Enemy)
+	if body is Enemy:
+		print("here")
+		body.take_damage(damage, poison, ticks)

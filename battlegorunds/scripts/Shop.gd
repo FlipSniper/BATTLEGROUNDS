@@ -14,7 +14,17 @@ func buy_laser() -> void:
 		await get_tree().create_timer(2).timeout
 		$Shop/Products/Laser/Failure.visible = false
 
-
+func buy_FireCircle() -> void:
+	if Inventory.coins >= 50 and !("fire" in Inventory.unlocked):
+		Inventory.unlocked.append("fire")
+		Inventory.coins -= 50
+		$Shop/Products/FireCircle/Successful.visible = true
+		await get_tree().create_timer(2).timeout
+		$Shop/Products/FireCircle/Successful.visible = false
+	else:
+		$Shop/Products/FireCircle/Failure.visible = true
+		await get_tree().create_timer(2).timeout
+		$Shop/Products/FireCircle/Failure.visible = false
 
 func buy_damage_I() -> void:
 	print(Inventory.discount)

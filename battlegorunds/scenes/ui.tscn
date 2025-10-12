@@ -117,6 +117,44 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Purchase Failed. You don't have enough."
 
+[node name="FireCircle" type="Button" parent="Shop/Shop/Products"]
+layout_mode = 2
+text = "Fire Spell - 50 Coins"
+
+[node name="Successful" type="Label" parent="Shop/Shop/Products/FireCircle"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 396.5
+offset_top = 457.5
+offset_right = 756.5
+offset_bottom = 532.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Purchase Successful. Bought Fire Spell for 50 coins
+Press 3 to switch to Fire Spell
+and Press 0 to switch back"
+
+[node name="Failure" type="Label" parent="Shop/Shop/Products/FireCircle"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 420.5
+offset_top = 483.5
+offset_right = 732.5
+offset_bottom = 506.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Purchase Failed. You don't have enough."
+
 [node name="Damage" type="Button" parent="Shop/Shop/Products"]
 layout_mode = 2
 text = "Damage Potion I
@@ -621,6 +659,7 @@ libraries = {
 }
 
 [connection signal="pressed" from="Shop/Shop/Products/Laser" to="Shop" method="buy_laser"]
+[connection signal="pressed" from="Shop/Shop/Products/FireCircle" to="Shop" method="buy_FireCircle"]
 [connection signal="pressed" from="Shop/Shop/Products/Damage" to="Shop" method="buy_damage_I"]
 [connection signal="pressed" from="Shop/Shop/Products/Speed" to="Shop" method="buy_speed_I"]
 [connection signal="pressed" from="Shop/Shop/Products/Poison" to="Shop" method="buy_Poison_I"]

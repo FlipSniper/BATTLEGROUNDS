@@ -11,7 +11,7 @@ radius = 31.0
 height = 100.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7p1mj"]
-radius = 377.0013
+radius = 330.6675
 
 [sub_resource type="Animation" id="Animation_4ra3w"]
 length = 0.001
@@ -54,7 +54,7 @@ _data = {
 collision_layer = 8
 collision_mask = 9
 script = ExtResource("1_xx6g3")
-type = "Disperse"
+type = "Ranged"
 drop = ExtResource("2_2wk5q")
 bullet_scene = ExtResource("3_b0uxi")
 
@@ -71,7 +71,13 @@ collision_layer = 16
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
-visible = false
+shape = SubResource("CircleShape2D_7p1mj")
+
+[node name="Stay Away" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Stay Away"]
 shape = SubResource("CircleShape2D_7p1mj")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -84,3 +90,5 @@ stream = ExtResource("5_n43p3")
 
 [connection signal="body_entered" from="PlayerDetector" to="." method="_on_player_detector_body_entered"]
 [connection signal="body_exited" from="PlayerDetector" to="." method="_on_player_detector_body_exited"]
+[connection signal="body_entered" from="Stay Away" to="." method="stay_away"]
+[connection signal="body_exited" from="Stay Away" to="." method="away_you_go"]

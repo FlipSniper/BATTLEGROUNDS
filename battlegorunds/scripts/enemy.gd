@@ -35,6 +35,9 @@ func _process(delta: float) -> void:
 			_spawn_bullets()
 			await get_tree().create_timer(1.2).timeout
 			wait_shoot = true
+		if type == "Ranged" and wait_shoot:
+			wait_shoot = false
+			shoot()
 
 
 func _physics_process(delta: float) -> void:
@@ -93,6 +96,15 @@ func take_damage(amount: int, poison, ticks_left):
 			await get_tree().create_timer(1).timeout
 			take_damage(poison, poison, ticks_left - 1)
 
+func shoot():
+	var bullet = bullet_scene.instantiate()
+	var angle = deg_to_rad(90)
+	bullet.direction = Vector2.RIGHT.rotated(angle)
+	bullet.global_position = global_position
+	bullet.owner_type = "enemy"
+	bullet.shooter = self
+	get_tree().current_scene.add_child(bullet)
+
 
 func _spawn_bullets():
 	for i in range(10):
@@ -103,3 +115,11 @@ func _spawn_bullets():
 		bullet.owner_type = "enemy"
 		bullet.shooter = self
 		get_tree().current_scene.add_child(bullet)
+
+
+func stay_away(body: Node2D) -> void:
+	look_at(player.global_position)
+
+
+func away_you_go(body: Node2D) -> void:
+	pass # Replace with function body.
