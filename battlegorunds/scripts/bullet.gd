@@ -33,7 +33,7 @@ func _on_body_entered(body):
 		queue_free()
 	elif owner_type == "enemy" and body is Player:
 		print("here_L")
-		body._on_hit_box_body_entered(shooter)
+		body._on_hit_box_body_entered(null,true)
 		queue_free()
 	elif body is StaticBody2D:
 		queue_free()

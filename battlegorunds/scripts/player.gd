@@ -8,6 +8,7 @@ signal died
 @onready var shoot_sound = $ShootSound
 @onready var laser_line = $LaserLine2D
 @onready var animplayer = $AnimationPlayer
+@onready var hurt_sound = $HurtSound
 var damage = 1
 
 var speed = 300.0
@@ -20,6 +21,7 @@ var shoot_cooldown := 0.5
 var time_since_last_shot := 0.0
 
 func _ready():
+	Inventory.health = 5
 	laser_line.visible = false
 
 func _process(delta: float) -> void:
@@ -128,9 +130,14 @@ func start_timer(name, time, attribute_sub):
 		ticks -= attribute_sub
 		$UI/Default.potion_disable("Poison_I")
 
-func _on_hit_box_body_entered(body: Node2D) -> void:
-	if body is Enemy:
+func _on_hit_box_body_entered(body: Node2D,check = false) -> void:
+	if body is Enemy or check:
+		$UI/Fade/ColorRect.visible = true
+		$UI/Fade/AnimationPlayer.play("hurt")
+		hurt_sound.play()
 		Inventory.health -= 1
-		if Inventory.health == 0:
+		await get_tree().create_timer(.67).timeout
+		$UI/Fade/ColorRect.visible = false
+		if Inventory.health <= 0:
 			died.emit()
 			queue_free()

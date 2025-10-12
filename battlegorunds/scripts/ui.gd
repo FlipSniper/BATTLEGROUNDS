@@ -14,5 +14,5 @@ func _process(delta: float) -> void:
 		$Default/coins.text = "Coins: "+str(Inventory.coins)
 		prev_coin = Inventory.coins
 	if prev_health != Inventory.health:
-		$Default/health.health = "Health: "+str(Inventory.health)
+		$Default/health.text = "Health: "+str(Inventory.health)
 		prev_health = Inventory.health
