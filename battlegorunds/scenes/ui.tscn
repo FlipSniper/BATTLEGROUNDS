@@ -4,21 +4,6 @@
 [ext_resource type="Script" uid="uid://dm83wodygv5ov" path="res://scripts/ui.gd" id="1_yev5y"]
 [ext_resource type="Script" uid="uid://dwi54o2lmqra5" path="res://scripts/default.gd" id="2_x4jx1"]
 
-[sub_resource type="Animation" id="Animation_wu84c"]
-resource_name = "fade"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect:color")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
-}
-
 [sub_resource type="Animation" id="Animation_8ln24"]
 length = 0.001
 tracks/0/type = "value"
@@ -32,6 +17,21 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_wu84c"]
+resource_name = "fade"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rtw2f"]
@@ -53,14 +53,20 @@ script = ExtResource("1_yev5y")
 script = ExtResource("1_nt7q6")
 Default = NodePath("../Default")
 
-[node name="Laser" type="Button" parent="Shop"]
-offset_left = 1.0
-offset_top = 130.0
-offset_right = 134.0
-offset_bottom = 181.0
+[node name="Shop" type="ScrollContainer" parent="Shop"]
+custom_minimum_size = Vector2(167.275, 89.78)
+offset_top = 83.0
+offset_right = 184.0
+offset_bottom = 297.0
+
+[node name="Products" type="VBoxContainer" parent="Shop/Shop"]
+layout_mode = 2
+
+[node name="Laser" type="Button" parent="Shop/Shop/Products"]
+layout_mode = 2
 text = "Magic Laser - 10 Coins"
 
-[node name="Successful" type="Label" parent="Shop/Laser"]
+[node name="Successful" type="Label" parent="Shop/Shop/Products/Laser"]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -78,7 +84,7 @@ text = "Purchase Successful. Bought Laser for 10 coins
 Press 1 to switch to Laser
 and Press 0 to switch back"
 
-[node name="Failure" type="Label" parent="Shop/Laser"]
+[node name="Failure" type="Label" parent="Shop/Shop/Products/Laser"]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -94,14 +100,12 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Purchase Failed. You don't have enough."
 
-[node name="Damage" type="Button" parent="Shop"]
-offset_top = 201.0
-offset_right = 178.0
-offset_bottom = 232.0
+[node name="Damage" type="Button" parent="Shop/Shop/Products"]
+layout_mode = 2
 text = "Damage Potion I
 - 5 coins"
 
-[node name="Successful" type="Label" parent="Shop/Damage"]
+[node name="Successful" type="Label" parent="Shop/Shop/Products/Damage"]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -117,7 +121,7 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Purchase Successful. Bought Damage for 5 coins."
 
-[node name="Failure_Coins" type="Label" parent="Shop/Damage"]
+[node name="Failure_Coins" type="Label" parent="Shop/Shop/Products/Damage"]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -133,7 +137,7 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Purchase Failed. You don't have enough."
 
-[node name="Failure_Potions" type="Label" parent="Shop/Damage"]
+[node name="Failure_Potions" type="Label" parent="Shop/Shop/Products/Damage"]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -149,14 +153,12 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Purchase Failed. You've drunk to many potions, wait until the effects wear off."
 
-[node name="Speed" type="Button" parent="Shop"]
-offset_top = 268.0
-offset_right = 178.0
-offset_bottom = 322.0
+[node name="Speed" type="Button" parent="Shop/Shop/Products"]
+layout_mode = 2
 text = "Speed Potion I
 - 8 coins"
 
-[node name="Successful" type="Label" parent="Shop/Speed"]
+[node name="Successful" type="Label" parent="Shop/Shop/Products/Speed"]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -172,7 +174,7 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Purchase Successful. Bought Speed for 5 coins."
 
-[node name="Failure_Coins" type="Label" parent="Shop/Speed"]
+[node name="Failure_Coins" type="Label" parent="Shop/Shop/Products/Speed"]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -188,7 +190,7 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Purchase Failed. You don't have enough."
 
-[node name="Failure_Potions" type="Label" parent="Shop/Speed"]
+[node name="Failure_Potions" type="Label" parent="Shop/Shop/Products/Speed"]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -204,14 +206,12 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Purchase Failed. You've drunk to many potions, wait until the effects wear off."
 
-[node name="Poison" type="Button" parent="Shop"]
-offset_top = 338.0
-offset_right = 178.0
-offset_bottom = 392.0
+[node name="Poison" type="Button" parent="Shop/Shop/Products"]
+layout_mode = 2
 text = "Inflict Posion Potion I
 - 10 coins"
 
-[node name="Successful" type="Label" parent="Shop/Poison"]
+[node name="Successful" type="Label" parent="Shop/Shop/Products/Poison"]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -227,7 +227,7 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Purchase Successful. Bought Poison for 8 coins."
 
-[node name="Failure_Coins" type="Label" parent="Shop/Poison"]
+[node name="Failure_Coins" type="Label" parent="Shop/Shop/Products/Poison"]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -243,7 +243,7 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Purchase Failed. You don't have enough."
 
-[node name="Failure_Potions" type="Label" parent="Shop/Poison"]
+[node name="Failure_Potions" type="Label" parent="Shop/Shop/Products/Poison"]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -267,11 +267,19 @@ offset_right = 129.0
 offset_bottom = 51.0
 text = "Shop"
 
-[node name="Label" type="Label" parent="Default"]
+[node name="coins" type="Label" parent="Default"]
 offset_left = 1168.0
 offset_right = 1219.0
 offset_bottom = 23.0
 text = "Coins"
+text_direction = 2
+
+[node name="health" type="Label" parent="Default"]
+offset_left = 1168.0
+offset_top = 31.0
+offset_right = 1219.0
+offset_bottom = 54.0
+text = "Health"
 text_direction = 2
 
 [node name="Potion Counter" type="ScrollContainer" parent="Default"]
@@ -336,8 +344,8 @@ libraries = {
 &"": SubResource("AnimationLibrary_rtw2f")
 }
 
-[connection signal="pressed" from="Shop/Laser" to="Shop" method="buy_laser"]
-[connection signal="pressed" from="Shop/Damage" to="Shop" method="buy_damage_I"]
-[connection signal="pressed" from="Shop/Speed" to="Shop" method="buy_speed_I"]
-[connection signal="pressed" from="Shop/Poison" to="Shop" method="buy_Poison_I"]
+[connection signal="pressed" from="Shop/Shop/Products/Laser" to="Shop" method="buy_laser"]
+[connection signal="pressed" from="Shop/Shop/Products/Damage" to="Shop" method="buy_damage_I"]
+[connection signal="pressed" from="Shop/Shop/Products/Speed" to="Shop" method="buy_speed_I"]
+[connection signal="pressed" from="Shop/Shop/Products/Poison" to="Shop" method="buy_Poison_I"]
 [connection signal="pressed" from="Default/Button" to="Default" method="_on_button_pressed"]

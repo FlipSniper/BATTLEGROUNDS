@@ -20,3 +20,13 @@ func play() -> void:
 	$Fade/AnimationPlayer.play("fade")
 	await get_tree().create_timer(.9).timeout
 	get_tree().change_scene_to_file("res://scenes/world.tscn")
+
+
+func controls() -> void:
+	$Buttons.visible = false
+	$controls.visible = true
+
+
+func close_controls() -> void:
+	$Buttons.visible = true
+	$controls.visible = false

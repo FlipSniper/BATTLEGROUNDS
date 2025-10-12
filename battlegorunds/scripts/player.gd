@@ -56,7 +56,8 @@ func _process(delta: float) -> void:
 		get_tree().current_scene.add_child(bullet_instance)
 		bullet_instance.global_position = shoot_raycast.global_position
 		bullet_instance.direction = (get_global_mouse_position() - global_position).normalized()
-		bullet_instance.player = self
+		bullet_instance.shooter = self
+		bullet_instance.owner_type = "player"
 		bullet_instance.poison = poison
 		bullet_instance.ticks = ticks
 
@@ -129,5 +130,7 @@ func start_timer(name, time, attribute_sub):
 
 func _on_hit_box_body_entered(body: Node2D) -> void:
 	if body is Enemy:
-		died.emit()
-		queue_free()
+		Inventory.health -= 1
+		if Inventory.health == 0:
+			died.emit()
+			queue_free()

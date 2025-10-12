@@ -2,12 +2,14 @@ extends Area2D
 
 var speed = 800
 var direction = Vector2.ZERO
-var player = null
 var rotated = false
 var distance_travelled = 0.0
-var max_distance = 500.0  # how far bullet can travel (in pixels)
-var poison : int
-var ticks : int
+var max_distance = 500.0
+
+var poison: int
+var ticks: int
+var owner_type: String
+var shooter = null
 
 func _physics_process(delta):
 	if !rotated and direction != Vector2.ZERO:
@@ -19,13 +21,19 @@ func _physics_process(delta):
 		position += move
 		distance_travelled += move.length()
 
-	# delete bullet if it's gone too far
 	if distance_travelled >= max_distance:
 		queue_free()
 
+
 func _on_body_entered(body):
-	if body is Enemy:
-		if player != null:
-			body.player = player
-		body.take_damage(player.damage,poison,ticks)
-	queue_free()
+	print(body is Player)
+	if owner_type == "player" and body is Enemy:
+		print("here")
+		body.take_damage(shooter.damage, poison, ticks)
+		queue_free()
+	elif owner_type == "enemy" and body is Player:
+		print("here_L")
+		body._on_hit_box_body_entered(shooter)
+		queue_free()
+	elif body is StaticBody2D:
+		queue_free()

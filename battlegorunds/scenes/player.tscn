@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://c4a87t3d0sguw"]
+[gd_scene load_steps=13 format=3 uid="uid://c4a87t3d0sguw"]
 
 [ext_resource type="Script" uid="uid://ba7irgwnwr4vk" path="res://scripts/player.gd" id="1_3vyb7"]
 [ext_resource type="Texture2D" uid="uid://bv37widdkpm1f" path="res://assets/player.png" id="2_qhqgy"]
 [ext_resource type="Texture2D" uid="uid://cx11k4l66snmh" path="res://assets/Gun.png" id="3_dqkch"]
 [ext_resource type="AudioStream" uid="uid://c05k810nvg3lo" path="res://sfx/gunshot-352466.mp3" id="4_dqkch"]
 [ext_resource type="PackedScene" uid="uid://v6j31f7jrdhc" path="res://scenes/ui.tscn" id="5_qlg0r"]
+[ext_resource type="AudioStream" uid="uid://be1b75tagvi3r" path="res://sfx/pathetic-screaming-sound-effect-312867.mp3" id="6_tuyoq"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qhqgy"]
 radius = 17.69231
@@ -131,5 +132,8 @@ libraries = {
 }
 
 [node name="UI" parent="." instance=ExtResource("5_qlg0r")]
+
+[node name="HurtSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_tuyoq")
 
 [connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]

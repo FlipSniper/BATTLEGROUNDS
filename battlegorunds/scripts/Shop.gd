@@ -6,13 +6,13 @@ func buy_laser() -> void:
 	if Inventory.coins >= 10 and !("laser" in Inventory.unlocked):
 		Inventory.unlocked.append("laser")
 		Inventory.coins -= 10
-		$Laser/Successful.visible = true
+		$Shop/Products/Laser/Successful.visible = true
 		await get_tree().create_timer(2).timeout
-		$Laser/Successful.visible = false
+		$Shop/Products/Laser/Successful.visible = false
 	else:
-		$Laser/Failure.visible = true
+		$Shop/Products/Laser/Failure.visible = true
 		await get_tree().create_timer(2).timeout
-		$Laser/Failure.visible = false
+		$Shop/Products/Laser/Failure.visible = false
 
 
 
@@ -20,51 +20,51 @@ func buy_damage_I() -> void:
 	var player = get_tree().current_scene.get_node_or_null("Player")
 	if Inventory.coins >= 5 and Default.potions_equipped.size() < 8:
 		Inventory.coins -= 5
-		$Damage/Successful.visible = true
+		$Shop/Products/Damage/Successful.visible = true
 		Inventory.potions.append("Damage_I")
 		await get_tree().create_timer(2).timeout
-		$Damage/Successful.visible = false
+		$Shop/Products/Damage/Successful.visible = false
 	elif !Inventory.coins >= 5:
-		$Damage/Failure_Coins.visible = true
+		$Shop/Products/Damage/Failure_Coins.visible = true
 		await get_tree().create_timer(2).timeout
-		$Damage/Failure_Coins.visible = false
+		$Shop/Products/Damage/Failure_Coins.visible = false
 	elif !Default.potions_equipped.size() < 8:
-		$Damage/Failure_Potions.visible = true
+		$Shop/Products/Damage/Failure_Potions.visible = true
 		await get_tree().create_timer(2).timeout
-		$Damage/Failure_Potions.visible = false
+		$Shop/Products/Damage/Failure_Potions.visible = false
 
 
 func buy_speed_I() -> void:
 	var player = get_tree().current_scene.get_node_or_null("Player")
 	if Inventory.coins >= 8 and Default.potions_equipped.size() < 8:
 		Inventory.coins -= 8
-		$Speed/Successful.visible = true
+		$Shop/Products/Speed/Successful.visible = true
 		Inventory.potions.append("Speed_I")
 		await get_tree().create_timer(2).timeout
-		$Speed/Successful.visible = false
+		$Shop/Products/Speed/Successful.visible = false
 	elif !Inventory.coins >= 8:
-		$Speed/Failure_Coins.visible = true
+		$Shop/Products/Speed/Failure_Coins.visible = true
 		await get_tree().create_timer(2).timeout
-		$Speed/Failure_Coins.visible = false
+		$Shop/Products/Speed/Failure_Coins.visible = false
 	elif !Default.potions_equipped.size() < 8:
-		$Speed/Failure_Potions.visible = true
+		$Shop/Products/Speed/Failure_Potions.visible = true
 		await get_tree().create_timer(2).timeout
-		$Speed/Failure_Potions.visible = false
+		$Shop/Products/Speed/Failure_Potions.visible = false
 
 
 func buy_Poison_I() -> void:
 	var player = get_tree().current_scene.get_node_or_null("Player")
 	if Inventory.coins >= 10 and Default.potions_equipped.size() < 8:
 		Inventory.coins -= 10
-		$Poison/Successful.visible = true
+		$Shop/Products/Poison/Successful.visible = true
 		Inventory.potions.append("Poison_I")
 		await get_tree().create_timer(2).timeout
-		$Poison/Successful.visible = false
+		$Shop/Products/Poison/Successful.visible = false
 	elif !Inventory.coins >= 10:
-		$Poison/Failure_Coins.visible = true
+		$Shop/Products/Poison/Failure_Coins.visible = true
 		await get_tree().create_timer(2).timeout
-		$Poison/Failure_Coins.visible = false
+		$Shop/Products/Poison/Failure_Coins.visible = false
 	elif !Default.potions_equipped.size() < 8:
-		$Poison/Failure_Potions.visible = true
+		$Shop/Products/Poison/Failure_Potions.visible = true
 		await get_tree().create_timer(2).timeout
-		$Poison/Failure_Potions.visible = false
+		$Shop/Products/Poison/Failure_Potions.visible = false
